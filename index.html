@@ -93,6 +93,15 @@
         .modal-content code {
             font-family: 'Consolas', 'Monaco', monospace;
         }
+        /* Badge styles */
+        .badge-paid {
+            background: linear-gradient(135deg, #D90429, #8D0801);
+            color: white;
+        }
+        .badge-free {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-gray-50">
@@ -104,7 +113,7 @@
                 Max_<span class="text-maxRed">Adis</span>
             </a>
             
-            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-wide">
+            <div class="hidden md:flex space-x-6 lg:space-x-8 font-semibold text-sm uppercase tracking-wide">
                 <a href="#accueil" class="nav-link hover:text-maxRed transition-colors">Accueil</a>
                 <a href="#boutique" class="nav-link hover:text-maxRed transition-colors">Boutique</a>
                 <a href="#projets" class="nav-link hover:text-maxRed transition-colors">Projets</a>
@@ -147,8 +156,8 @@
                 <a href="#boutique" class="bg-maxRed hover:bg-maxDarkRed text-white px-8 py-4 rounded-none font-bold uppercase tracking-wider transition-all transform hover:scale-105 shadow-lg shadow-red-900/50 touch-target">
                     Commander
                 </a>
-                <a href="#projets" class="bg-transparent border-2 border-white hover:bg-white hover:text-anthracite text-white px-8 py-4 rounded-none font-bold uppercase tracking-wider transition-all touch-target">
-                    Voir les projets
+                <a href="#formations" class="bg-transparent border-2 border-white hover:bg-white hover:text-anthracite text-white px-8 py-4 rounded-none font-bold uppercase tracking-wider transition-all touch-target">
+                    Voir les formations
                 </a>
             </div>
         </div>
@@ -176,7 +185,7 @@
                 <div class="bg-white p-8 shadow-2xl rounded-sm border-b-4 border-maxRed card-hover">
                     <div class="text-maxRed text-4xl mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
                     <h3 class="text-2xl font-bold mb-3 text-anthracite">Max_Adis Formation</h3>
-                    <p class="text-gray-600 mb-6">Formations pratiques en électronique, Arduino et domotique pour monter en compétence rapidement.</p>
+                    <p class="text-gray-600 mb-6">Formations pratiques en électronique, Arduino et domotique. Contenu gratuit et premium disponible.</p>
                     <a href="#formations" class="text-maxRed font-bold uppercase text-sm hover:underline">Voir les cours &rarr;</a>
                 </div>
             </div>
@@ -198,95 +207,301 @@
                 <button onclick="filterProducts('micro')" class="filter-btn bg-white text-anthracite border border-gray-300 px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed hover:text-white hover:border-maxRed transition-colors touch-target" data-filter="micro">Microcontrôleurs</button>
                 <button onclick="filterProducts('capteur')" class="filter-btn bg-white text-anthracite border border-gray-300 px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed hover:text-white hover:border-maxRed transition-colors touch-target" data-filter="capteur">Capteurs</button>
                 <button onclick="filterProducts('actionneur')" class="filter-btn bg-white text-anthracite border border-gray-300 px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed hover:text-white hover:border-maxRed transition-colors touch-target" data-filter="actionneur">Actionneurs</button>
+                <button onclick="filterProducts('module')" class="filter-btn bg-white text-anthracite border border-gray-300 px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed hover:text-white hover:border-maxRed transition-colors touch-target" data-filter="module">Modules</button>
+                <button onclick="filterProducts('accessoire')" class="filter-btn bg-white text-anthracite border border-gray-300 px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed hover:text-white hover:border-maxRed transition-colors touch-target" data-filter="accessoire">Accessoires</button>
             </div>
 
             <!-- Product Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="product-grid">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="product-grid">
                 
-                <!-- Product 1 -->
+                <!-- Product 1: Arduino Uno -->
                 <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="micro">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
                         <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ad80e2e-8e10-4a57-9e62-094f4519083b.png" alt="Arduino Uno" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                         <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
                     </div>
-                    <div class="p-6">
+                    <div class="p-5">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg md:text-xl font-bold text-anthracite">Arduino Uno R3</h3>
-                            <span class="text-maxRed font-bold text-lg">12,500 FCFA</span>
+                            <h3 class="text-lg font-bold text-anthracite">Arduino Uno R3</h3>
+                            <span class="text-maxRed font-bold">12,500 FCFA</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-4">Microcontrôleur basé sur l'ATmega328P. Idéal pour débuter et prototyper.</p>
-                        
-                        <div class="mb-4">
-                            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Compatible:</span>
-                            <div class="flex gap-2 mt-1 flex-wrap">
-                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">Arduino IDE</span>
-                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">ESP32</span>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-2 mt-4">
+                        <p class="text-gray-500 text-sm mb-3">Microcontrôleur ATmega328P. Idéal pour débuter.</p>
+                        <div class="flex gap-2 mt-3">
                             <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
-                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Datasheet PDF">
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
                                 <i class="fas fa-file-pdf"></i>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 2 -->
+                <!-- Product 2: ESP32 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="micro">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/140db6083-a123-4cc5-9d8d-f23fae236ab7.png" alt="ESP32" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">ESP32 WiFi+BT</h3>
+                            <span class="text-maxRed font-bold">8,000 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Double cœur, WiFi et Bluetooth intégrés.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Arduino Nano -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="micro">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png" alt="Arduino Nano" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">Arduino Nano</h3>
+                            <span class="text-maxRed font-bold">7,500 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Version compacte de l'Arduino Uno.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Capteur Ultrason -->
                 <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="capteur">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
                         <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/19e2e6a38-656c-4b3e-98f4-5c614bde985a.png" alt="Capteur Ultrason" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                         <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
                     </div>
-                    <div class="p-6">
+                    <div class="p-5">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg md:text-xl font-bold text-anthracite">Capteur Ultrason HC-SR04</h3>
-                            <span class="text-maxRed font-bold text-lg">2,000 FCFA</span>
+                            <h3 class="text-lg font-bold text-anthracite">HC-SR04 Ultrason</h3>
+                            <span class="text-maxRed font-bold">2,000 FCFA</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-4">Mesure de distance précise de 2cm à 400cm. Robuste et fiable.</p>
-                        
-                        <div class="mb-4">
-                            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Compatible:</span>
-                            <div class="flex gap-2 mt-1 flex-wrap">
-                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">Robotique</span>
-                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">Évitement</span>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-2 mt-4">
+                        <p class="text-gray-500 text-sm mb-3">Mesure de distance 2cm à 400cm.</p>
+                        <div class="flex gap-2 mt-3">
                             <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
-                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Datasheet PDF">
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
                                 <i class="fas fa-file-pdf"></i>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 3 -->
+                <!-- Product 5: DHT22 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="capteur">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png" alt="DHT22" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">DHT22 Temp/Hum</h3>
+                            <span class="text-maxRed font-bold">3,500 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Capteur température et humidité précis.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Capteur PIR -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="capteur">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/17036701c-181f-4d4e-a759-c458a262b54b.png" alt="Capteur PIR" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">Capteur PIR HC-SR501</h3>
+                            <span class="text-maxRed font-bold">2,500 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Détection de mouvement infrarouge.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7: Servo Moteur -->
                 <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="actionneur">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
-                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/17036701c-181f-4d4e-a759-c458a262b54b.png" alt="Servo Moteur" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ff722ad-4f51-436a-9e48-87c1a96357d0.png" alt="Servo Moteur" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                         <span class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">Stock Faible</span>
                     </div>
-                    <div class="p-6">
+                    <div class="p-5">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg md:text-xl font-bold text-anthracite">Servo Moteur Industriel</h3>
-                            <span class="text-maxRed font-bold text-lg">45,000 FCFA</span>
+                            <h3 class="text-lg font-bold text-anthracite">Servo SG90</h3>
+                            <span class="text-maxRed font-bold">3,000 FCFA</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-4">Moteur haute précision avec encodeur. Couple élevé pour applications lourdes.</p>
-                        
-                        <div class="mb-4">
-                            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Compatible:</span>
-                            <div class="flex gap-2 mt-1 flex-wrap">
-                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">Bras Robotique</span>
-                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">CNC</span>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-2 mt-4">
+                        <p class="text-gray-500 text-sm mb-3">Micro servo 9g pour robotique légère.</p>
+                        <div class="flex gap-2 mt-3">
                             <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
-                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Datasheet PDF">
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8: Moteur Pas à Pas -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="actionneur">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png" alt="Moteur Pas à Pas" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">Moteur 28BYJ-48</h3>
+                            <span class="text-maxRed font-bold">5,000 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Moteur pas à pas avec driver ULN2003.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 9: Module Relais -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="module">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/19e2e6a38-656c-4b3e-98f4-5c614bde985a.png" alt="Module Relais" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">Module Relais 5V</h3>
+                            <span class="text-maxRed font-bold">2,500 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Contrôle appareils 220V avec Arduino.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 10: Écran LCD -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="module">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ad80e2e-8e10-4a57-9e62-094f4519083b.png" alt="Écran LCD" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">Écran LCD 16x2</h3>
+                            <span class="text-maxRed font-bold">4,500 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Affichage alphanumérique avec rétroéclairage.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 11: Module Bluetooth -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="module">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/140db6083-a123-4cc5-9d8d-f23fae236ab7.png" alt="Module Bluetooth" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">HC-05 Bluetooth</h3>
+                            <span class="text-maxRed font-bold">6,000 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Communication sans fil avec smartphone.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 12: Kit de Câbles -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="accessoire">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png" alt="Kit de Câbles" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">Kit Câbles Jumper</h3>
+                            <span class="text-maxRed font-bold">3,000 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">65 câbles M-M, M-F, F-F assortis.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 13: Breadboard -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="accessoire">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/17036701c-181f-4d4e-a759-c458a262b54b.png" alt="Breadboard" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">Breadboard 830 pts</h3>
+                            <span class="text-maxRed font-bold">4,000 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Plaque d'essai pour prototypage.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 14: Kit Résistances -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="accessoire">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png" alt="Kit Résistances" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-anthracite">Kit Résistances 600pcs</h3>
+                            <span class="text-maxRed font-bold">5,500 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">30 valeurs différentes de 10Ω à 1MΩ.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target">
                                 <i class="fas fa-file-pdf"></i>
                             </a>
                         </div>
@@ -390,6 +605,87 @@
                     </div>
                 </div>
 
+                <!-- Project 4: Système de Sécurité -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/19e2e6a38-656c-4b3e-98f4-5c614bde985a.png" alt="Système de Sécurité" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded">SÉCURITÉ</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-anthracite mb-2">Alarme de Sécurité</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Système d'alarme avec capteur PIR, sirène et notification SMS en cas d'intrusion détectée.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">PIR</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">GSM</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Sirène</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="showCodeModal('alarme')" class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Voir la vidéo">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Robot Suiveur de Ligne -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/17036701c-181f-4d4e-a759-c458a262b54b.png" alt="Robot Suiveur" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded">ROBOTIQUE</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-anthracite mb-2">Robot Suiveur de Ligne</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Robot autonome capable de suivre une ligne noire sur fond blanc grâce à des capteurs infrarouges.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">IR Sensors</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Moteurs DC</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">L298N</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="showCodeModal('robot')" class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Voir la vidéo">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Domotique WiFi -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png" alt="Domotique WiFi" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-cyan-500 text-white text-xs font-bold px-3 py-1 rounded">IoT</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-anthracite mb-2">Contrôle Domotique WiFi</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Contrôle des appareils électriques via smartphone avec ESP32 et application mobile dédiée.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">ESP32</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">WiFi</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">App Mobile</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="showCodeModal('domotique')" class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Voir la vidéo">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Call to Action -->
@@ -405,55 +701,275 @@
     <!-- Formations Section -->
     <section id="formations" class="py-20 bg-lightGray">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
                 <div>
                     <h2 class="text-3xl md:text-4xl font-extrabold text-anthracite mb-2">Max_Adis <span class="text-maxRed">Formation</span></h2>
                     <p class="text-gray-500">Acquérez des compétences pratiques en électronique.</p>
                 </div>
-                <button onclick="toggleLogin()" class="flex items-center gap-2 text-anthracite font-bold hover:text-maxRed transition-colors touch-target bg-white px-4 py-2 rounded shadow-sm border border-gray-200">
-                    <i class="fas fa-user-graduate"></i> Espace Étudiant
-                </button>
+                <div class="flex gap-2">
+                    <button onclick="toggleLogin()" class="flex items-center gap-2 text-anthracite font-bold hover:text-maxRed transition-colors touch-target bg-white px-4 py-2 rounded shadow-sm border border-gray-200">
+                        <i class="fas fa-user-graduate"></i> Espace Étudiant
+                    </button>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Course 1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                    <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/140db6083-a123-4cc5-9d8d-f23fae236ab7.png" alt="Arduino Kit" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-maxRed uppercase tracking-wider">Débutant</span>
-                        <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Initiation à l'Arduino</h3>
-                        <p class="text-gray-600 text-sm mb-4">Apprenez les bases de la programmation C++ et de l'électronique embarquée.</p>
-                        <div class="flex justify-between items-center border-t pt-4">
-                            <span class="text-gray-500 text-sm font-semibold">5 Semaines</span>
-                            <a href="#" class="text-anthracite font-bold text-sm hover:text-maxRed">Voir le programme &rarr;</a>
+            <!-- Payment Info Banner -->
+            <div class="bg-gradient-to-r from-maxRed to-maxDarkRed text-white p-6 rounded-lg mb-12 shadow-lg">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-mobile-alt text-3xl"></i>
+                        <div>
+                            <h3 class="font-bold text-lg">Paiement Mobile Money</h3>
+                            <p class="text-sm opacity-90">MTN Money & Moov Money acceptés</p>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="font-bold text-lg">+229 01 54 11 64 25</p>
+                        <p class="text-sm opacity-90">Max Hounkpatin</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formations Gratuites -->
+            <div class="mb-16">
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="badge-free px-4 py-2 rounded-full font-bold text-sm">
+                        <i class="fas fa-gift mr-2"></i>FORMATIONS GRATUITES
+                    </span>
+                    <div class="flex-1 h-px bg-green-500"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Free Course 1: Piano -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-green-500">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/140db6083-a123-4cc5-9d8d-f23fae236ab7.png" alt="Piano Arduino" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="badge-free px-3 py-1 rounded text-xs font-bold inline-block mb-2">GRATUIT</span>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Piano Électronique avec Arduino</h3>
+                            <p class="text-gray-600 text-sm mb-4">Utilisation de boutons-poussoirs, fonction tone() en C++, branchement d'un haut-parleur/buzzer et notion de fréquences musicales.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Boutons-poussoirs</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Fonction tone()</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Fréquences musicales</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20Piano%20Arduino%20GRATUITE" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-download mr-2"></i>Télécharger Gratuitement
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Free Course 2: Multimètre -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-green-500">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/19e2e6a38-656c-4b3e-98f4-5c614bde985a.png" alt="Multimètre" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="badge-free px-3 py-1 rounded text-xs font-bold inline-block mb-2">GRATUIT</span>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Les Bases de l'Électronique: Multimètre</h3>
+                            <p class="text-gray-600 text-sm mb-4">Tester la continuité, mesurer une tension (V) et un courant (A), vérifier l'état d'une résistance ou d'une LED.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Mesure de tension</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Mesure de courant</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Test de continuité</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20Multimètre%20GRATUITE" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-download mr-2"></i>Télécharger Gratuitement
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Free Course 3: LED Clignotante -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-green-500">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ad80e2e-8e10-4a57-9e62-094f4519083b.png" alt="LED Arduino" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="badge-free px-3 py-1 rounded text-xs font-bold inline-block mb-2">GRATUIT</span>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Faire Clignoter une LED (Hello World)</h3>
+                            <p class="text-gray-600 text-sm mb-4">Installation de l'IDE Arduino, compréhension de la boucle void loop() et du delay(), premier circuit sur breadboard.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>IDE Arduino</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>void loop()</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Premier circuit</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20LED%20GRATUITE" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-download mr-2"></i>Télécharger Gratuitement
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Free Course 4: IoT -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-green-500">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png" alt="IoT" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="badge-free px-3 py-1 rounded text-xs font-bold inline-block mb-2">GRATUIT</span>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Initiation à la Domotique: C'est quoi l'IoT ?</h3>
+                            <p class="text-gray-600 text-sm mb-4">Vidéo ou article explicatif sur l'internet des objets, les protocoles (Wi-Fi, Bluetooth) et les débouchés professionnels au Bénin.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Internet des Objets</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Protocoles WiFi/BT</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Débouchés au Bénin</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20IoT%20GRATUITE" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-download mr-2"></i>Télécharger Gratuitement
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Free Course 5: Proteus -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-green-500">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png" alt="Proteus" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="badge-free px-3 py-1 rounded text-xs font-bold inline-block mb-2">GRATUIT</span>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Découverte de Proteus pour la Simulation</h3>
+                            <p class="text-gray-600 text-sm mb-4">Comment dessiner un schéma simple sur Proteus et tester son code avant de passer au montage réel pour éviter de griller des composants.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Dessin de schéma</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Simulation de code</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Protection composants</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20Proteus%20GRATUITE" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-download mr-2"></i>Télécharger Gratuitement
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Course 2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                    <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png" alt="Domotique" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-maxRed uppercase tracking-wider">Intermédiaire</span>
-                        <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Domotique avec Arduino</h3>
-                        <p class="text-gray-600 text-sm mb-4">Créez des systèmes domotiques complets avec capteurs et actionneurs.</p>
-                        <div class="flex justify-between items-center border-t pt-4">
-                            <span class="text-gray-500 text-sm font-semibold">8 Semaines</span>
-                            <a href="#" class="text-anthracite font-bold text-sm hover:text-maxRed">Voir le programme &rarr;</a>
-                        </div>
-                    </div>
+            <!-- Formations Payantes -->
+            <div>
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="badge-paid px-4 py-2 rounded-full font-bold text-sm">
+                        <i class="fas fa-star mr-2"></i>FORMATIONS PREMIUM (PAYANTES)
+                    </span>
+                    <div class="flex-1 h-px bg-maxRed"></div>
                 </div>
 
-                <!-- Course 3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                    <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png" alt="Robotique" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-maxRed uppercase tracking-wider">Avancé</span>
-                        <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Robotique & IoT</h3>
-                        <p class="text-gray-600 text-sm mb-4">Maîtrisez les protocoles de communication et créez des robots connectés.</p>
-                        <div class="flex justify-between items-center border-t pt-4">
-                            <span class="text-gray-500 text-sm font-semibold">10 Semaines</span>
-                            <a href="#" class="text-anthracite font-bold text-sm hover:text-maxRed">Voir le programme &rarr;</a>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Paid Course 1: Domotique Lampe -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-maxRed">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png" alt="Domotique Lampe" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="badge-paid px-3 py-1 rounded text-xs font-bold">PAYANT</span>
+                                <span class="text-maxRed font-bold text-lg">2 000 FCFA</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Domotique: Piloter une Lampe (220V) via Smartphone</h3>
+                            <p class="text-gray-600 text-sm mb-4">Sécurité électrique (relais), utilisation d'un module Wi-Fi (ESP8266/ESP32), création d'une interface simple sur mobile (Blynk ou MIT App Inventor) et code Arduino complet.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Sécurité électrique (relais)</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Module WiFi ESP8266/ESP32</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Interface mobile Blynk</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Code Arduino complet</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20acheter%20la%20formation%20Domotique%20Lampe%20(2000%20FCFA)" class="block w-full bg-maxRed hover:bg-maxDarkRed text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-shopping-cart mr-2"></i>Acheter la Formation
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paid Course 2: Alarme Anti-Intrusion -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-maxRed">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/19e2e6a38-656c-4b3e-98f4-5c614bde985a.png" alt="Alarme" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="badge-paid px-3 py-1 rounded text-xs font-bold">PAYANT</span>
+                                <span class="text-maxRed font-bold text-lg">1 500 FCFA</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Sécurité: Alarme Anti-Intrusion avec Capteur PIR</h3>
+                            <p class="text-gray-600 text-sm mb-4">Utilisation du capteur PIR, programmation d'une sirène (buzzer), gestion des délais d'activation et schéma de câblage sur plaque d'essai (breadboard).</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Capteur PIR HC-SR501</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Programmation sirène</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Gestion des délais</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Schéma de câblage</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20acheter%20la%20formation%20Alarme%20(1500%20FCFA)" class="block w-full bg-maxRed hover:bg-maxDarkRed text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-shopping-cart mr-2"></i>Acheter la Formation
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paid Course 3: Arrosage Automatique -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-maxRed">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png" alt="Arrosage" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="badge-paid px-3 py-1 rounded text-xs font-bold">PAYANT</span>
+                                <span class="text-maxRed font-bold text-lg">2 500 FCFA</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Agriculture Intelligente: Système d'Arrosage Automatique</h3>
+                            <p class="text-gray-600 text-sm mb-4">Lecture de l'humidité du sol, pilotage d'une mini-pompe à eau, seuils de déclenchement automatiques et affichage des données sur un écran LCD.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Capteur humidité sol</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Mini-pompe à eau</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Seuils automatiques</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Affichage LCD</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20acheter%20la%20formation%20Arrosage%20(2500%20FCFA)" class="block w-full bg-maxRed hover:bg-maxDarkRed text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-shopping-cart mr-2"></i>Acheter la Formation
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paid Course 4: Robot Éviteur -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-maxRed">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/17036701c-181f-4d4e-a759-c458a262b54b.png" alt="Robot" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="badge-paid px-3 py-1 rounded text-xs font-bold">PAYANT</span>
+                                <span class="text-maxRed font-bold text-lg">3 000 FCFA</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Robotique: Robot Éviteur d'Obstacles</h3>
+                            <p class="text-gray-600 text-sm mb-4">Montage du châssis, utilisation du capteur ultrason (HC-SR04), contrôle des moteurs via un pont en H (L298N) et algorithme de décision de trajectoire.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Montage du châssis</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Capteur HC-SR04</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Pont en H L298N</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Algorithme de trajectoire</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20acheter%20la%20formation%20Robot%20(3000%20FCFA)" class="block w-full bg-maxRed hover:bg-maxDarkRed text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-shopping-cart mr-2"></i>Acheter la Formation
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paid Course 5: Page Web CV -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-maxRed">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/140db6083-a123-4cc5-9d8d-f23fae236ab7.png" alt="HTML CSS" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="badge-paid px-3 py-1 rounded text-xs font-bold">PAYANT</span>
+                                <span class="text-maxRed font-bold text-lg">1 000 FCFA</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Web: Créer ta Première Page de CV en HTML/CSS</h3>
+                            <p class="text-gray-600 text-sm mb-4">Structure d'une page web, mise en forme avec CSS, intégration d'images et de liens de réseaux sociaux.</p>
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Structure HTML</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Mise en forme CSS</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Intégration d'images</li>
+                                <li><i class="fas fa-check text-maxRed mr-2"></i>Liens réseaux sociaux</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20acheter%20la%20formation%20HTML%20CSS%20(1000%20FCFA)" class="block w-full bg-maxRed hover:bg-maxDarkRed text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-shopping-cart mr-2"></i>Acheter la Formation
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Paid Course 6: Pack Complet -->
+                    <div class="bg-gradient-to-br from-maxRed to-maxDarkRed text-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-white">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="bg-white text-maxRed px-3 py-1 rounded text-xs font-bold">MEILLEURE OFFRE</span>
+                                <span class="font-bold text-lg">5 000 FCFA</span>
+                            </div>
+                            <h3 class="text-xl font-bold mt-2 mb-2">🎁 PACK FORMATIONS COMPLÈTES</h3>
+                            <p class="text-white/90 text-sm mb-4">Accédez à TOUTES les formations payantes avec un prix réduit ! Économisez 5 000 FCFA !</p>
+                            <ul class="text-sm text-white/90 mb-4 space-y-1">
+                                <li><i class="fas fa-check text-white mr-2"></i>5 formations premium incluses</li>
+                                <li><i class="fas fa-check text-white mr-2"></i>Codes sources complets</li>
+                                <li><i class="fas fa-check text-white mr-2"></i>Support technique prioritaire</li>
+                                <li><i class="fas fa-check text-white mr-2"></i>Mises à jour gratuites</li>
+                            </ul>
+                            <a href="https://wa.me/+2290154116425?text=Je%20veux%20acheter%20le%20PACK%20COMPLET%20(5000%20FCFA)" class="block w-full bg-white hover:bg-gray-100 text-maxRed text-center font-bold py-3 rounded transition-colors touch-target">
+                                <i class="fas fa-gift mr-2"></i>Obtenir le Pack Complet
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -490,8 +1006,9 @@
                                     <i class="fas fa-phone"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-anthracite">Téléphone</h4>
+                                    <h4 class="font-bold text-anthracite">Téléphone / WhatsApp</h4>
                                     <a href="tel:+2290154116425" class="text-gray-600 hover:text-maxRed transition-colors">+229 01 54 11 64 25</a>
+                                    <p class="text-xs text-gray-500 mt-1">MTN Money & Moov Money acceptés</p>
                                 </div>
                             </div>
                             
@@ -600,8 +1117,8 @@ void loop() {
 }</code></pre>
                 
                 <div class="mt-6 space-y-3">
-                    <p class="text-center text-gray-700 font-semibold">Code Arduino disponible sur demande !</p>
-                    <a href="mailto:maxhounkpatin001@gmail.com?subject=Demande Code Source" class="block w-full bg-anthracite hover:bg-maxRed text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                    <p class="text-center text-gray-700 font-semibold">Code Arduino SMARTROAD disponible sur demande !</p>
+                    <a href="mailto:maxhounkpatin001@gmail.com?subject=Demande Code SMARTROAD" class="block w-full bg-anthracite hover:bg-maxRed text-white text-center font-bold py-3 rounded transition-colors touch-target">
                         <i class="fas fa-envelope mr-2"></i>Demander le code complet
                     </a>
                 </div>
@@ -668,13 +1185,12 @@ void loop() {
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4 text-maxRed">Newsletter</h4>
-                    <div class="flex">
-                        <input type="email" placeholder="Votre email" class="bg-gray-800 text-white px-4 py-2 w-full focus:outline-none text-sm rounded-l">
-                        <button class="bg-maxRed px-4 py-2 hover:bg-maxDarkRed transition-colors rounded-r touch-target">
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
+                    <h4 class="font-bold text-lg mb-4 text-maxRed">Paiement</h4>
+                    <div class="flex gap-2 mb-2">
+                        <span class="bg-yellow-500 text-white px-3 py-1 rounded text-xs font-bold">MTN Money</span>
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded text-xs font-bold">Moov Money</span>
                     </div>
+                    <p class="text-gray-400 text-sm">+229 01 54 11 64 25</p>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
@@ -733,9 +1249,10 @@ void loop() {
             const code = document.getElementById('modalCode');
             
             // Custom content per project
-            if (project === 'smartroad') {
-                title.textContent = 'Code Source SMARTROAD';
-                code.textContent = `#include <Arduino.h>
+            const projectCodes = {
+                'smartroad': {
+                    title: 'Code Source SMARTROAD',
+                    code: `#include <Arduino.h>
 
 /*
  * Programme - Gérer un feu tricolore à 4 voies ! 
@@ -752,10 +1269,11 @@ void loop() {
     delay(1000);                 // Attendre une seconde
     digitalWrite(---, LOW);     // Éteindre
     delay(1000);                 // Attendre une seconde
-}`;
-            } else if (project === 'meteo') {
-                title.textContent = 'Code Source Station Météo';
-                code.textContent = `#include <DHT.h>
+}`
+                },
+                'meteo': {
+                    title: 'Code Source Station Météo',
+                    code: `#include <DHT.h>
 #include <LiquidCrystal.h>
 
 #define DHTPIN 2
@@ -779,10 +1297,11 @@ void loop() {
     lcd.print(h);
     lcd.print("%");
     delay(2000);
-}`;
-            } else if (project === 'serre') {
-                title.textContent = 'Code Source Serre Automatique';
-                code.textContent = `#include <Arduino.h>
+}`
+                },
+                'serre': {
+                    title: 'Code Source Serre Automatique',
+                    code: `#include <Arduino.h>
 
 #define SOIL_SENSOR A0
 #define PUMP_PIN 8
@@ -803,7 +1322,100 @@ void loop() {
     }
     
     delay(1000);
-}`;
+}`
+                },
+                'alarme': {
+                    title: 'Code Source Alarme Sécurité',
+                    code: `#include <Arduino.h>
+#include <SoftwareSerial.h>
+
+#define PIR_PIN 2
+#define SIRENE_PIN 8
+
+SoftwareSerial gsm(10, 11);
+
+void setup() {
+    pinMode(PIR_PIN, INPUT);
+    pinMode(SIRENE_PIN, OUTPUT);
+    gsm.begin(9600);
+}
+
+void loop() {
+    if (digitalRead(PIR_PIN) == HIGH) {
+        digitalWrite(SIRENE_PIN, HIGH);
+        gsm.println("AT+CMGS=\"+229XXXXXXXX\"");
+        delay(1000);
+        gsm.println("Intrusion detectee!");
+        delay(5000);
+        digitalWrite(SIRENE_PIN, LOW);
+    }
+}`
+                },
+                'robot': {
+                    title: 'Code Source Robot Suiveur',
+                    code: `#include <Arduino.h>
+
+#define LEFT_SENSOR 2
+#define RIGHT_SENSOR 3
+#define LEFT_MOTOR 5
+#define RIGHT_MOTOR 6
+
+void setup() {
+    pinMode(LEFT_SENSOR, INPUT);
+    pinMode(RIGHT_SENSOR, INPUT);
+    pinMode(LEFT_MOTOR, OUTPUT);
+    pinMode(RIGHT_MOTOR, OUTPUT);
+}
+
+void loop() {
+    if (digitalRead(LEFT_SENSOR) == LOW) {
+        analogWrite(LEFT_MOTOR, 0);
+        analogWrite(RIGHT_MOTOR, 200);
+    } else if (digitalRead(RIGHT_SENSOR) == LOW) {
+        analogWrite(LEFT_MOTOR, 200);
+        analogWrite(RIGHT_MOTOR, 0);
+    } else {
+        analogWrite(LEFT_MOTOR, 200);
+        analogWrite(RIGHT_MOTOR, 200);
+    }
+}`
+                },
+                'domotique': {
+                    title: 'Code Source Domotique WiFi',
+                    code: `#include <WiFi.h>
+#include <WebServer.h>
+
+const char* ssid = "VotreWiFi";
+const char* password = "VotreMotDePasse";
+
+WebServer server(80);
+#define RELAY_PIN 5
+
+void setup() {
+    WiFi.begin(ssid, password);
+    pinMode(RELAY_PIN, OUTPUT);
+    
+    server.on("/", []() {
+        server.send(200, "text/html", "<button onclick='fetch(\"/on\")'>ON</button>");
+    });
+    
+    server.on("/on", []() {
+        digitalWrite(RELAY_PIN, HIGH);
+        server.send(200, "text/plain", "ON");
+    });
+    
+    server.begin();
+}
+
+void loop() {
+    server.handleClient();
+}`
+                }
+            };
+            
+            if (projectCodes[project]) {
+                title.textContent = projectCodes[project].title;
+                code.textContent = projectCodes[project].code;
             }
             
             modal.classList.remove('hidden');
@@ -825,7 +1437,10 @@ void loop() {
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeCodeModal();
-                toggleLogin();
+                const loginModal = document.getElementById('loginModal');
+                if (!loginModal.classList.contains('hidden')) {
+                    toggleLogin();
+                }
             }
         });
 
@@ -855,5 +1470,4 @@ void loop() {
     </script>
 </body>
 </html>
-
 
