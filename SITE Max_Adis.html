@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#D90429">
+    <meta name="description" content="Max_Adis - Vente de composants électroniques, services et formation en électronique et domotique au Bénin">
+    <title>Max_Adis | Vente de Composants & Formation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        maxRed: '#D90429',
+                        maxDarkRed: '#8D0801',
+                        anthracite: '#2B2D42',
+                        lightGray: '#EDF2F4',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(43, 45, 66, 0.9), rgba(43, 45, 66, 0.6));
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(217, 4, 41, 0.15);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #D90429;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2B2D42;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D90429;
+        }
+        /* Mobile optimization */
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Modal styles */
+        .modal-content pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .modal-content code {
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl md:text-3xl font-extrabold tracking-tighter text-anthracite">
+                Max_<span class="text-maxRed">Adis</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-wide">
+                <a href="#accueil" class="nav-link hover:text-maxRed transition-colors">Accueil</a>
+                <a href="#boutique" class="nav-link hover:text-maxRed transition-colors">Boutique</a>
+                <a href="#projets" class="nav-link hover:text-maxRed transition-colors">Projets</a>
+                <a href="#formations" class="nav-link hover:text-maxRed transition-colors">Formation</a>
+                <a href="#contact" class="nav-link hover:text-maxRed transition-colors">Contact</a>
+            </div>
+
+            <button class="md:hidden text-2xl text-anthracite touch-target" onclick="toggleMenu()" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 p-4 absolute w-full shadow-lg">
+            <a href="#accueil" class="block py-3 text-anthracite hover:text-maxRed font-medium border-b border-gray-50">Accueil</a>
+            <a href="#boutique" class="block py-3 text-anthracite hover:text-maxRed font-medium border-b border-gray-50">Boutique</a>
+            <a href="#projets" class="block py-3 text-anthracite hover:text-maxRed font-medium border-b border-gray-50">Projets</a>
+            <a href="#formations" class="block py-3 text-anthracite hover:text-maxRed font-medium border-b border-gray-50">Formation</a>
+            <a href="#contact" class="block py-3 text-anthracite hover:text-maxRed font-medium">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+        <div class="absolute inset-0 z-0">
+            <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ff722ad-4f51-436a-9e48-87c1a96357d0.png" alt="Composants électroniques" class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10 text-white text-center md:text-left">
+            <span class="inline-block py-1 px-3 rounded-full bg-maxRed/20 border border-maxRed text-maxRed text-sm font-bold mb-4 backdrop-blur-sm animate-pulse">
+                COMPOSANTS & ÉLECTRONIQUE
+            </span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
+                L'électronique <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-maxRed to-orange-500">à portée de main.</span>
+            </h1>
+            <p class="text-base md:text-xl text-gray-300 mb-8 max-w-2xl font-light mx-auto md:mx-0">
+                Votre référence pour l'achat de composants électroniques, modules Arduino, capteurs et kits de développement. Livraison rapide et support technique inclus.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+                <a href="#boutique" class="bg-maxRed hover:bg-maxDarkRed text-white px-8 py-4 rounded-none font-bold uppercase tracking-wider transition-all transform hover:scale-105 shadow-lg shadow-red-900/50 touch-target">
+                    Commander
+                </a>
+                <a href="#projets" class="bg-transparent border-2 border-white hover:bg-white hover:text-anthracite text-white px-8 py-4 rounded-none font-bold uppercase tracking-wider transition-all touch-target">
+                    Voir les projets
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 Pillars Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-20 md:-mt-32 relative z-20">
+                <!-- Pillar 1: Shop -->
+                <div class="bg-white p-8 shadow-2xl rounded-sm border-b-4 border-maxRed card-hover">
+                    <div class="text-maxRed text-4xl mb-4"><i class="fas fa-shopping-cart"></i></div>
+                    <h3 class="text-2xl font-bold mb-3 text-anthracite">Vente de Composants</h3>
+                    <p class="text-gray-600 mb-6">Large gamme de microcontrôleurs, capteurs, actionneurs et modules pour tous vos projets électroniques.</p>
+                    <a href="#boutique" class="text-maxRed font-bold uppercase text-sm hover:underline">Voir le catalogue &rarr;</a>
+                </div>
+                <!-- Pillar 2: Projects -->
+                <div class="bg-white p-8 shadow-2xl rounded-sm border-b-4 border-anthracite card-hover">
+                    <div class="text-anthracite text-4xl mb-4"><i class="fas fa-robot"></i></div>
+                    <h3 class="text-2xl font-bold mb-3 text-anthracite">Projets Réalisés</h3>
+                    <p class="text-gray-600 mb-6">Découvrez nos réalisations en domotique, robotique et systèmes intelligents. SMARTROAD, stations météo et plus encore.</p>
+                    <a href="#projets" class="text-anthracite font-bold uppercase text-sm hover:underline">Voir les projets &rarr;</a>
+                </div>
+                <!-- Pillar 3: Formation -->
+                <div class="bg-white p-8 shadow-2xl rounded-sm border-b-4 border-maxRed card-hover">
+                    <div class="text-maxRed text-4xl mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="text-2xl font-bold mb-3 text-anthracite">Max_Adis Formation</h3>
+                    <p class="text-gray-600 mb-6">Formations pratiques en électronique, Arduino et domotique pour monter en compétence rapidement.</p>
+                    <a href="#formations" class="text-maxRed font-bold uppercase text-sm hover:underline">Voir les cours &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="boutique" class="py-20 bg-lightGray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-anthracite mb-4">Composants <span class="text-maxRed">Disponibles</span></h2>
+                <div class="w-24 h-1 bg-maxRed mx-auto"></div>
+                <p class="text-gray-500 mt-4">Sélectionnez votre catégorie pour filtrer les produits.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button onclick="filterProducts('all')" class="filter-btn active bg-anthracite text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed transition-colors touch-target" data-filter="all">Tous</button>
+                <button onclick="filterProducts('micro')" class="filter-btn bg-white text-anthracite border border-gray-300 px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed hover:text-white hover:border-maxRed transition-colors touch-target" data-filter="micro">Microcontrôleurs</button>
+                <button onclick="filterProducts('capteur')" class="filter-btn bg-white text-anthracite border border-gray-300 px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed hover:text-white hover:border-maxRed transition-colors touch-target" data-filter="capteur">Capteurs</button>
+                <button onclick="filterProducts('actionneur')" class="filter-btn bg-white text-anthracite border border-gray-300 px-5 py-2 rounded-full text-sm font-bold hover:bg-maxRed hover:text-white hover:border-maxRed transition-colors touch-target" data-filter="actionneur">Actionneurs</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="product-grid">
+                
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="micro">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ad80e2e-8e10-4a57-9e62-094f4519083b.png" alt="Arduino Uno" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg md:text-xl font-bold text-anthracite">Arduino Uno R3</h3>
+                            <span class="text-maxRed font-bold text-lg">12,500 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">Microcontrôleur basé sur l'ATmega328P. Idéal pour débuter et prototyper.</p>
+                        
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Compatible:</span>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">Arduino IDE</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">ESP32</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 mt-4">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Datasheet PDF">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="capteur">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/19e2e6a38-656c-4b3e-98f4-5c614bde985a.png" alt="Capteur Ultrason" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">En Stock</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg md:text-xl font-bold text-anthracite">Capteur Ultrason HC-SR04</h3>
+                            <span class="text-maxRed font-bold text-lg">2,000 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">Mesure de distance précise de 2cm à 400cm. Robuste et fiable.</p>
+                        
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Compatible:</span>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">Robotique</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">Évitement</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 mt-4">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Datasheet PDF">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" data-category="actionneur">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/17036701c-181f-4d4e-a759-c458a262b54b.png" alt="Servo Moteur" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">Stock Faible</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg md:text-xl font-bold text-anthracite">Servo Moteur Industriel</h3>
+                            <span class="text-maxRed font-bold text-lg">45,000 FCFA</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">Moteur haute précision avec encodeur. Couple élevé pour applications lourdes.</p>
+                        
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Compatible:</span>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">Bras Robotique</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">CNC</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 mt-4">
+                            <button class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">Ajouter</button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Datasheet PDF">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects/Prestations Section -->
+    <section id="projets" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-anthracite text-center mb-4">
+                Nos <span class="text-maxRed">Projets Réalisés</span>
+            </h2>
+            <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">
+                Découvrez nos réalisations en domotique, robotique et systèmes intelligents. Chaque projet est accompagné de son code source et de sa documentation.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: SMARTROAD -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ff722ad-4f51-436a-9e48-87c1a96357d0.png" alt="SMARTROAD" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-maxRed text-white text-xs font-bold px-3 py-1 rounded">POPULAIRE</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-anthracite mb-2">SMARTROAD - Feux Intelligents</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Système de feux tricolores intelligents à 4 voies qui s'adaptent à la circulation grâce aux capteurs ultrasons. Régulation dynamique du trafic en temps réel.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Arduino</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Capteurs Ultrason</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">LED</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="showCodeModal('smartroad')" class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <a href="https://www.tiktok.com/@maxadis" target="_blank" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Voir la vidéo">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Station Météo -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ad80e2e-8e10-4a57-9e62-094f4519083b.png" alt="Station Météo" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded">COMPLET</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-anthracite mb-2">Station Météo Connectée</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Station météo avec affichage LCD pour mesurer température et humidité en temps réel. Capteur DHT22 précis et fiable.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">DHT22</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">LCD</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Arduino</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="showCodeModal('meteo')" class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Voir la vidéo">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Serre Automatique -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png" alt="Serre Automatique" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded">AUTOMATISÉ</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-anthracite mb-2">Serre Automatisée</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Système d'arrosage et ventilation automatique basé sur l'humidité du sol et la température ambiante.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Capteur Humidité</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Relais</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Pompe</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="showCodeModal('serre')" class="flex-1 bg-anthracite text-white py-2 rounded hover:bg-maxRed transition-colors font-semibold text-sm touch-target">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded hover:border-maxRed hover:text-maxRed transition-colors touch-target" title="Voir la vidéo">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-4">Vous avez un projet similaire en tête ?</p>
+                <a href="#contact" class="inline-block bg-maxRed hover:bg-maxDarkRed text-white px-8 py-3 rounded font-bold uppercase tracking-wider transition-all touch-target">
+                    Demander un devis
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formations Section -->
+    <section id="formations" class="py-20 bg-lightGray">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-anthracite mb-2">Max_Adis <span class="text-maxRed">Formation</span></h2>
+                    <p class="text-gray-500">Acquérez des compétences pratiques en électronique.</p>
+                </div>
+                <button onclick="toggleLogin()" class="flex items-center gap-2 text-anthracite font-bold hover:text-maxRed transition-colors touch-target bg-white px-4 py-2 rounded shadow-sm border border-gray-200">
+                    <i class="fas fa-user-graduate"></i> Espace Étudiant
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/140db6083-a123-4cc5-9d8d-f23fae236ab7.png" alt="Arduino Kit" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-maxRed uppercase tracking-wider">Débutant</span>
+                        <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Initiation à l'Arduino</h3>
+                        <p class="text-gray-600 text-sm mb-4">Apprenez les bases de la programmation C++ et de l'électronique embarquée.</p>
+                        <div class="flex justify-between items-center border-t pt-4">
+                            <span class="text-gray-500 text-sm font-semibold">5 Semaines</span>
+                            <a href="#" class="text-anthracite font-bold text-sm hover:text-maxRed">Voir le programme &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png" alt="Domotique" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-maxRed uppercase tracking-wider">Intermédiaire</span>
+                        <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Domotique avec Arduino</h3>
+                        <p class="text-gray-600 text-sm mb-4">Créez des systèmes domotiques complets avec capteurs et actionneurs.</p>
+                        <div class="flex justify-between items-center border-t pt-4">
+                            <span class="text-gray-500 text-sm font-semibold">8 Semaines</span>
+                            <a href="#" class="text-anthracite font-bold text-sm hover:text-maxRed">Voir le programme &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png" alt="Robotique" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-maxRed uppercase tracking-wider">Avancé</span>
+                        <h3 class="text-xl font-bold text-anthracite mt-2 mb-2">Robotique & IoT</h3>
+                        <p class="text-gray-600 text-sm mb-4">Maîtrisez les protocoles de communication et créez des robots connectés.</p>
+                        <div class="flex justify-between items-center border-t pt-4">
+                            <span class="text-gray-500 text-sm font-semibold">10 Semaines</span>
+                            <a href="#" class="text-anthracite font-bold text-sm hover:text-maxRed">Voir le programme &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-anthracite text-center mb-12">
+                <span class="text-maxRed">Contactez</span>-nous
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="bg-lightGray p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-anthracite mb-6">Mes Coordonnées</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-maxRed rounded-full flex items-center justify-center text-white flex-shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-anthracite">E-mail</h4>
+                                    <a href="mailto:maxhounkpatin001@gmail.com" class="text-gray-600 hover:text-maxRed transition-colors break-all">maxhounkpatin001@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-maxRed rounded-full flex items-center justify-center text-white flex-shrink-0">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-anthracite">Téléphone</h4>
+                                    <a href="tel:+2290154116425" class="text-gray-600 hover:text-maxRed transition-colors">+229 01 54 11 64 25</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-maxRed rounded-full flex items-center justify-center text-white flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-anthracite">Localisation</h4>
+                                    <p class="text-gray-600">Porto-Novo, Bénin</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="bg-anthracite p-8 rounded-lg shadow-md text-white">
+                        <h3 class="text-xl font-bold mb-4">Suivez-nous</h3>
+                        <div class="flex gap-4">
+                            <a href="https://wa.me/+2290154116425" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-maxRed transition-colors touch-target">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </a>
+                            <a href="https://tiktok.com/@maxadis" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-maxRed transition-colors touch-target">
+                                <i class="fab fa-tiktok text-xl"></i>
+                            </a>
+                            <a href="https://github.com/Max-Adis" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-maxRed transition-colors touch-target">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form with Web3Forms -->
+                <div class="bg-lightGray p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-anthracite mb-6">Envoyez-nous un message</h3>
+                    
+                    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                        <!-- Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="04867166-552b-4887-a3ae-71e6d1043188">
+                        <input type="hidden" name="subject" value="Nouveau message depuis Max_Adis.com">
+                        <input type="hidden" name="redirect" value="https://maxadis.vercel.app">
+                        
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Nom complet</label>
+                            <input type="text" name="name" required class="w-full bg-white border border-gray-300 text-gray-800 py-3 px-4 rounded focus:outline-none focus:border-maxRed transition-colors touch-target" placeholder="Votre nom">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">E-mail</label>
+                            <input type="email" name="email" required class="w-full bg-white border border-gray-300 text-gray-800 py-3 px-4 rounded focus:outline-none focus:border-maxRed transition-colors touch-target" placeholder="votre@email.com">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Téléphone (optionnel)</label>
+                            <input type="tel" name="phone" class="w-full bg-white border border-gray-300 text-gray-800 py-3 px-4 rounded focus:outline-none focus:border-maxRed transition-colors touch-target" placeholder="+229 XX XX XX XX">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Message</label>
+                            <textarea name="message" required class="w-full bg-white border border-gray-300 text-gray-800 py-3 px-4 rounded focus:outline-none focus:border-maxRed transition-colors h-32" placeholder="Votre message..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-maxRed hover:bg-maxDarkRed text-white font-bold py-4 px-6 rounded transition-colors flex items-center justify-center gap-2 touch-target">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Envoyer le message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Modal for Projects -->
+    <div id="codeModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeCodeModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-full max-w-2xl p-6 md:p-8 rounded-lg shadow-2xl mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-anthracite" id="modalTitle">Code Source</h3>
+                <button onclick="closeCodeModal()" class="text-gray-400 hover:text-maxRed touch-target">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="bg-maxRed/10 border border-maxRed rounded-lg p-4 mb-6">
+                    <p class="text-maxRed font-bold"><i class="fas fa-lock mr-2"></i>Le code complet de ce projet est sous licence !</p>
+                    <p class="text-gray-600 text-sm mt-2">Voici un aperçu du code. Pour obtenir le code complet, contactez-nous.</p>
+                </div>
+                
+                <pre><code id="modalCode">#include &lt;Arduino.h&gt;
+
+/*
+ * Programme - Gérer un feu tricolore à 4 voies ! 
+ * Les feux s'adaptent à la circulation grâce aux capteurs ultrasons ! 
+ */
+
+void setup() {
+    // Initialisation des sorties
+    pinMode(---, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(---, HIGH);    // Allumer
+    delay(1000);                 // Attendre une seconde
+    digitalWrite(---, LOW);     // Éteindre
+    delay(1000);                 // Attendre une seconde
+}</code></pre>
+                
+                <div class="mt-6 space-y-3">
+                    <p class="text-center text-gray-700 font-semibold">Code Arduino disponible sur demande !</p>
+                    <a href="mailto:maxhounkpatin001@gmail.com?subject=Demande Code Source" class="block w-full bg-anthracite hover:bg-maxRed text-white text-center font-bold py-3 rounded transition-colors touch-target">
+                        <i class="fas fa-envelope mr-2"></i>Demander le code complet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="toggleLogin()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-full max-w-md p-8 rounded-lg shadow-2xl mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-anthracite">Espace Étudiant</h3>
+                <button onclick="toggleLogin()" class="text-gray-400 hover:text-maxRed touch-target">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Connexion simulée !'); toggleLogin();">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Identifiant</label>
+                    <input type="text" class="w-full border border-gray-300 py-3 px-3 rounded focus:outline-none focus:border-maxRed touch-target" placeholder="ex: ETU-2023-001">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Mot de passe</label>
+                    <input type="password" class="w-full border border-gray-300 py-3 px-3 rounded focus:outline-none focus:border-maxRed touch-target" placeholder="••••••••">
+                </div>
+                <button class="w-full bg-maxRed text-white font-bold py-3 rounded hover:bg-maxDarkRed transition-colors touch-target">
+                    Se connecter
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-anthracite text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 lg:col-span-1">
+                    <a href="#" class="text-3xl font-extrabold tracking-tighter mb-4 block">
+                        Max_<span class="text-maxRed">Adis</span>
+                    </a>
+                    <p class="text-gray-400 text-sm">
+                        Votre partenaire technologique pour la vente de composants électroniques et la formation technique au Bénin.
+                    </p>
+                    <p class="text-gray-400 text-sm mt-2">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Porto-Novo, Bénin
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-maxRed">Liens Rapides</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#boutique" class="hover:text-white transition-colors">Boutique</a></li>
+                        <li><a href="#projets" class="hover:text-white transition-colors">Projets</a></li>
+                        <li><a href="#formations" class="hover:text-white transition-colors">Formations</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-maxRed">Contact</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><i class="fas fa-envelope w-6"></i> maxhounkpatin001@gmail.com</li>
+                        <li><i class="fas fa-phone w-6"></i> +229 01 54 11 64 25</li>
+                        <li><i class="fas fa-map-marker-alt w-6"></i> Porto-Novo, Bénin</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-maxRed">Newsletter</h4>
+                    <div class="flex">
+                        <input type="email" placeholder="Votre email" class="bg-gray-800 text-white px-4 py-2 w-full focus:outline-none text-sm rounded-l">
+                        <button class="bg-maxRed px-4 py-2 hover:bg-maxDarkRed transition-colors rounded-r touch-target">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Max_Adis. Tous droits réservés.</p>
+                <p class="mt-2">Hébergé sur <a href="https://maxadis.vercel.app" class="text-maxRed hover:underline">maxadis.vercel.app</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Shop Filtering
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update buttons style
+            buttons.forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.remove('bg-white', 'text-anthracite', 'border');
+                    btn.classList.add('bg-anthracite', 'text-white');
+                } else {
+                    btn.classList.add('bg-white', 'text-anthracite', 'border');
+                    btn.classList.remove('bg-anthracite', 'text-white');
+                }
+            });
+
+            // Filter items
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                    setTimeout(() => {
+                        product.style.opacity = '1';
+                        product.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    product.style.opacity = '0';
+                    product.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        product.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Code Modal
+        function showCodeModal(project) {
+            const modal = document.getElementById('codeModal');
+            const title = document.getElementById('modalTitle');
+            const code = document.getElementById('modalCode');
+            
+            // Custom content per project
+            if (project === 'smartroad') {
+                title.textContent = 'Code Source SMARTROAD';
+                code.textContent = `#include <Arduino.h>
+
+/*
+ * Programme - Gérer un feu tricolore à 4 voies ! 
+ * Les feux s'adaptent à la circulation grâce aux capteurs ultrasons ! 
+ */
+
+void setup() {
+    // Initialisation des sorties
+    pinMode(---, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(---, HIGH);    // Allumer
+    delay(1000);                 // Attendre une seconde
+    digitalWrite(---, LOW);     // Éteindre
+    delay(1000);                 // Attendre une seconde
+}`;
+            } else if (project === 'meteo') {
+                title.textContent = 'Code Source Station Météo';
+                code.textContent = `#include <DHT.h>
+#include <LiquidCrystal.h>
+
+#define DHTPIN 2
+#define DHTTYPE DHT22
+
+DHT dht(DHTPIN, DHTTYPE);
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+void setup() {
+    dht.begin();
+    lcd.begin(16, 2);
+}
+
+void loop() {
+    float t = dht.readTemperature();
+    float h = dht.readHumidity();
+    
+    lcd.print("T: ");
+    lcd.print(t);
+    lcd.print("C H: ");
+    lcd.print(h);
+    lcd.print("%");
+    delay(2000);
+}`;
+            } else if (project === 'serre') {
+                title.textContent = 'Code Source Serre Automatique';
+                code.textContent = `#include <Arduino.h>
+
+#define SOIL_SENSOR A0
+#define PUMP_PIN 8
+#define FAN_PIN 9
+
+void setup() {
+    pinMode(PUMP_PIN, OUTPUT);
+    pinMode(FAN_PIN, OUTPUT);
+}
+
+void loop() {
+    int moisture = analogRead(SOIL_SENSOR);
+    
+    if (moisture < 500) {
+        digitalWrite(PUMP_PIN, HIGH);
+        delay(5000);
+        digitalWrite(PUMP_PIN, LOW);
+    }
+    
+    delay(1000);
+}`;
+            }
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCodeModal() {
+            document.getElementById('codeModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Login Modal
+        function toggleLogin() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCodeModal();
+                toggleLogin();
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
