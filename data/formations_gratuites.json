@@ -1,0 +1,37 @@
+[
+  {
+    "titre": "Piano Électronique avec Arduino",
+    "description": "Utilisation de boutons-poussoirs, fonction tone() en C++, branchement d'un haut-parleur/buzzer et notion de fréquences musicales.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/140db6083-a123-4cc5-9d8d-f23fae236ab7.png",
+    "points": ["Boutons-poussoirs", "Fonction tone()", "Fréquences musicales"],
+    "lienWhatsapp": "https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20Piano%20Arduino%20GRATUITE"
+  },
+  {
+    "titre": "Les Bases de l'Électronique: Multimètre",
+    "description": "Tester la continuité, mesurer une tension (V) et un courant (A), vérifier l'état d'une résistance ou d'une LED.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/19e2e6a38-656c-4b3e-98f4-5c614bde985a.png",
+    "points": ["Mesure de tension", "Mesure de courant", "Test de continuité"],
+    "lienWhatsapp": "https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20Multimètre%20GRATUITE"
+  },
+  {
+    "titre": "Faire Clignoter une LED (Hello World)",
+    "description": "Installation de l'IDE Arduino, compréhension de la boucle void loop() et du delay(), premier circuit sur breadboard.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ad80e2e-8e10-4a57-9e62-094f4519083b.png",
+    "points": ["IDE Arduino", "void loop()", "Premier circuit"],
+    "lienWhatsapp": "https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20LED%20GRATUITE"
+  },
+  {
+    "titre": "Initiation à la Domotique: C'est quoi l'IoT ?",
+    "description": "Vidéo ou article explicatif sur l'internet des objets, les protocoles (Wi-Fi, Bluetooth) et les débouchés professionnels au Bénin.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png",
+    "points": ["Internet des Objets", "Protocoles WiFi/BT", "Débouchés au Bénin"],
+    "lienWhatsapp": "https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20IoT%20GRATUITE"
+  },
+  {
+    "titre": "Découverte de Proteus pour la Simulation",
+    "description": "Comment dessiner un schéma simple sur Proteus et tester son code avant de passer au montage réel pour éviter de griller des composants.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png",
+    "points": ["Dessin de schéma", "Simulation de code", "Protection composants"],
+    "lienWhatsapp": "https://wa.me/+2290154116425?text=Je%20veux%20la%20formation%20Proteus%20GRATUITE"
+  }
+]

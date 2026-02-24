@@ -1,0 +1,68 @@
+backend:
+  name: git-gateway
+  branch: main # ou master selon ta branche par défaut
+
+media_folder: "images/uploads" # dossier où les images uploadées seront stockées
+public_folder: "/images/uploads"
+
+collections:
+  - name: "produits"
+    label: "Produits"
+    folder: "data/produits.json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nom", name: "nom", widget: "string"}
+      - {label: "Catégorie", name: "categorie", widget: "select", options: ["micro", "capteur", "actionneur", "module", "accessoire"]}
+      - {label: "Prix (FCFA)", name: "prix", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Stock", name: "stock", widget: "select", options: ["En Stock", "Stock Faible", "Rupture"]}
+      - {label: "Description", name: "description", widget: "text"}
+
+  - name: "projets"
+    label: "Projets"
+    folder: "data/projets.json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "ID unique (utilisé pour le modal)", name: "id", widget: "string"}
+      - {label: "Titre", name: "titre", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Tags (séparés par des virgules)", name: "tags", widget: "list"}
+      - {label: "Populaire ?", name: "popular", widget: "boolean", default: false}
+      - {label: "Lien vidéo TikTok", name: "videoLink", widget: "string", required: false}
+      - {label: "Aperçu du code", name: "codeApercu", widget: "text", required: false}
+      - {label: "Description dans le modal", name: "modalDescription", widget: "text", default: "Voici un aperçu du code. Pour obtenir le code complet, contactez-nous."}
+      - {label: "Texte de pied de modal", name: "modalFooter", widget: "string", default: "Code disponible sur demande !"}
+
+  - name: "formations_gratuites"
+    label: "Formations Gratuites"
+    folder: "data/formations_gratuites.json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titre", name: "titre", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Points clés (liste)", name: "points", widget: "list"}
+      - {label: "Lien WhatsApp de téléchargement", name: "lienWhatsapp", widget: "string"}
+
+  - name: "formations_payantes"
+    label: "Formations Payantes"
+    folder: "data/formations_payantes.json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titre", name: "titre", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "Prix (FCFA)", name: "prix", widget: "string"}
+      - {label: "Points clés", name: "points", widget: "list"}
+      - {label: "Lien WhatsApp d'achat", name: "lienWhatsapp", widget: "string"}
+      - {label: "Est-ce un pack ?", name: "isPack", widget: "boolean", default: false}
+      - {label: "Texte du bouton (si pack)", name: "boutonTexte", widget: "string", required: false}

@@ -1,0 +1,64 @@
+[
+  {
+    "id": "smartroad",
+    "titre": "SMARTROAD - Feux Intelligents",
+    "description": "Système de feux tricolores intelligents à 4 voies qui s'adaptent à la circulation grâce aux capteurs ultrasons. Régulation dynamique du trafic en temps réel.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ff722ad-4f51-436a-9e48-87c1a96357d0.png",
+    "tags": ["Arduino", "Capteurs Ultrason", "LED"],
+    "popular": true,
+    "videoLink": "https://www.tiktok.com/@maxadis",
+    "codeApercu": "#include <Arduino.h>\n\nvoid setup() {\n    pinMode(---, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(---, HIGH);\n    delay(1000);\n    digitalWrite(---, LOW);\n    delay(1000);\n}",
+    "modalDescription": "Voici un aperçu du code. Pour obtenir le code complet, contactez-nous.",
+    "modalFooter": "Code Arduino SMARTROAD disponible sur demande !"
+  },
+  {
+    "id": "meteo",
+    "titre": "Station Météo Connectée",
+    "description": "Station météo avec affichage LCD pour mesurer température et humidité en temps réel. Capteur DHT22 précis et fiable.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/18ad80e2e-8e10-4a57-9e62-094f4519083b.png",
+    "tags": ["DHT22", "LCD", "Arduino"],
+    "popular": false,
+    "videoLink": "",
+    "codeApercu": "#include <DHT.h>\n#include <LiquidCrystal.h>\n\n#define DHTPIN 2\n#define DHTTYPE DHT22\n\nDHT dht(DHTPIN, DHTTYPE);\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nvoid setup() {\n    dht.begin();\n    lcd.begin(16, 2);\n}\n\nvoid loop() {\n    float t = dht.readTemperature();\n    float h = dht.readHumidity();\n    \n    lcd.print(\"T: \");\n    lcd.print(t);\n    lcd.print(\"C H: \");\n    lcd.print(h);\n    lcd.print(\"%\");\n    delay(2000);\n}"
+  },
+  {
+    "id": "serre",
+    "titre": "Serre Automatisée",
+    "description": "Système d'arrosage et ventilation automatique basé sur l'humidité du sol et la température ambiante.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1abd251eb-4d79-4955-a427-b03695558d53.png",
+    "tags": ["Capteur Humidité", "Relais", "Pompe"],
+    "popular": false,
+    "videoLink": "",
+    "codeApercu": "#include <Arduino.h>\n\n#define SOIL_SENSOR A0\n#define PUMP_PIN 8\n#define FAN_PIN 9\n\nvoid setup() {\n    pinMode(PUMP_PIN, OUTPUT);\n    pinMode(FAN_PIN, OUTPUT);\n}\n\nvoid loop() {\n    int moisture = analogRead(SOIL_SENSOR);\n    \n    if (moisture < 500) {\n        digitalWrite(PUMP_PIN, HIGH);\n        delay(5000);\n        digitalWrite(PUMP_PIN, LOW);\n    }\n    \n    delay(1000);\n}"
+  },
+  {
+    "id": "alarme",
+    "titre": "Alarme de Sécurité",
+    "description": "Système d'alarme avec capteur PIR, sirène et notification SMS en cas d'intrusion détectée.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/19e2e6a38-656c-4b3e-98f4-5c614bde985a.png",
+    "tags": ["PIR", "GSM", "Sirène"],
+    "popular": false,
+    "videoLink": "",
+    "codeApercu": "#include <Arduino.h>\n#include <SoftwareSerial.h>\n\n#define PIR_PIN 2\n#define SIRENE_PIN 8\n\nSoftwareSerial gsm(10, 11);\n\nvoid setup() {\n    pinMode(PIR_PIN, INPUT);\n    pinMode(SIRENE_PIN, OUTPUT);\n    gsm.begin(9600);\n}\n\nvoid loop() {\n    if (digitalRead(PIR_PIN) == HIGH) {\n        digitalWrite(SIRENE_PIN, HIGH);\n        gsm.println(\"AT+CMGS=\\\"+229XXXXXXXX\\\"\");\n        delay(1000);\n        gsm.println(\"Intrusion detectee!\");\n        delay(5000);\n        digitalWrite(SIRENE_PIN, LOW);\n    }\n}"
+  },
+  {
+    "id": "robot",
+    "titre": "Robot Suiveur de Ligne",
+    "description": "Robot autonome capable de suivre une ligne noire sur fond blanc grâce à des capteurs infrarouges.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/17036701c-181f-4d4e-a759-c458a262b54b.png",
+    "tags": ["IR Sensors", "Moteurs DC", "L298N"],
+    "popular": false,
+    "videoLink": "",
+    "codeApercu": "#include <Arduino.h>\n\n#define LEFT_SENSOR 2\n#define RIGHT_SENSOR 3\n#define LEFT_MOTOR 5\n#define RIGHT_MOTOR 6\n\nvoid setup() {\n    pinMode(LEFT_SENSOR, INPUT);\n    pinMode(RIGHT_SENSOR, INPUT);\n    pinMode(LEFT_MOTOR, OUTPUT);\n    pinMode(RIGHT_MOTOR, OUTPUT);\n}\n\nvoid loop() {\n    if (digitalRead(LEFT_SENSOR) == LOW) {\n        analogWrite(LEFT_MOTOR, 0);\n        analogWrite(RIGHT_MOTOR, 200);\n    } else if (digitalRead(RIGHT_SENSOR) == LOW) {\n        analogWrite(LEFT_MOTOR, 200);\n        analogWrite(RIGHT_MOTOR, 0);\n    } else {\n        analogWrite(LEFT_MOTOR, 200);\n        analogWrite(RIGHT_MOTOR, 200);\n    }\n}"
+  },
+  {
+    "id": "domotique",
+    "titre": "Contrôle Domotique WiFi",
+    "description": "Contrôle des appareils électriques via smartphone avec ESP32 et application mobile dédiée.",
+    "image": "https://image.qwenlm.ai/public_source/69cd1d40-3a50-4fb9-9922-bd0926290f0d/1cecf9322-5cc7-4da2-9e79-087ac4fbbc4a.png",
+    "tags": ["ESP32", "WiFi", "App Mobile"],
+    "popular": false,
+    "videoLink": "",
+    "codeApercu": "#include <WiFi.h>\n#include <WebServer.h>\n\nconst char* ssid = \"VotreWiFi\";\nconst char* password = \"VotreMotDePasse\";\n\nWebServer server(80);\n#define RELAY_PIN 5\n\nvoid setup() {\n    WiFi.begin(ssid, password);\n    pinMode(RELAY_PIN, OUTPUT);\n    \n    server.on(\"/\", []() {\n        server.send(200, \"text/html\", \"<button onclick='fetch(\\\"/on\\\")'>ON</button>\");\n    });\n    \n    server.on(\"/on\", []() {\n        digitalWrite(RELAY_PIN, HIGH);\n        server.send(200, \"text/plain\", \"ON\");\n    });\n    \n    server.begin();\n}\n\nvoid loop() {\n    server.handleClient();\n}"
+  }
+]
