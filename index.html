@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="ZY730XKdf0vB5QXe8v94cLBBGV7ERzgIrwCjHpZQ-eg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Max_Adis - Ingénierie, Robotique & Domotique professionnelle au Bénin">
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="ZY730XKdf0vB5QXe8v94cLBBGV7ERzgIrwCjHpZQ-eg">
+    <title>Max_Adis | Innovation & Formation</title>
+    
+    <!-- Tailwind CSS -->
+        <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#D90429">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <!-- OG Tags -->
+    <meta property="og:title" content="Max_Adis | Composants Électroniques & Formations au Bénin">
+    <meta property="og:description" content="Votre référence pour l'achat de composants électroniques au Bénin.">
+    <meta property="og:url" content="https://maxadis.vercel.app">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Outfit (Titres) & Inter (Texte) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Config pour les couleurs -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        maxRed: '#D90429',
+                        maxDarkRed: '#E63946',
+                        anthracite: '#1A1D20',
+                        lightGray: '#F8F9FA',
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 40px -10px rgba(0,0,0,0.05)',
+                        'red-glow': '0 10px 25px -5px rgba(217, 4, 41, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+
+    <script>const GSHEET_API = 'https://script.google.com/macros/s/AKfycbyB1XsFBQJKC2xvHTqYBjG8ojVqgbxIXyvhw85zkwj9lxJAgC_-r37gVAeLMBWQexYXkg/exec';</script>
+    <!-- Custom CSS pour animations fines -->
+    <style>
+        /* Base styles */
+        body { font-family: 'Inter', sans-serif; color: #4B5563; }
+        h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Outfit', sans-serif; }
+
+        /* ---- MOBILE RESPONSIVENESS FIXES ---- */
+        @media (max-width: 640px) {
+            /* Make hero text readable on mobile */
+            .hero-headline { font-size: 2.25rem !important; line-height: 1.2; }
+
+            /* Filters always wrap correctly */
+            .filter-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+            /* Product cards: always 2 per row minimum */
+            #products-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; }
+
+            /* Product card text: smaller on mobile */
+            .product-card h3 { font-size: 0.8rem; }
+            .product-card .text-lg { font-size: 0.9rem; }
+
+            /* Boutique section search bar: full width on mobile */
+            #searchInput { font-size: 0.8rem; }
+
+            /* Course cards: single column on mobile */
+            #courses-grid { grid-template-columns: 1fr; }
+
+            /* Modals: full screen on mobile */
+            #productModal .modal-content-anim, #courseModal .modal-content-anim {
+                max-height: 96vh; border-radius: 1rem;
+            }
+
+            /* Footer columns stack naturally */
+            footer .grid { grid-template-columns: 1fr !important; }
+        }
+
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Nav Link Underline Effect */
+        .nav-link { position: relative; color: #1A1D20; font-weight: 500; transition: color 0.3s ease; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -4px; left: 0;
+            background-color: #D90429;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover { color: #D90429; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        
+        /* Slow pulse for red blur */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+        }
+        .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+
+        /* Card Hover Effects */
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); }
+        
+        .product-overlay { background: linear-gradient(to top, rgba(26,29,32,0.9), transparent); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8F9FA; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D90429; }
+
+        /* Grid card custom hover border */
+        .product-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .product-card:hover {
+            border-color: #D90429;
+            box-shadow: 0 10px 25px -5px rgba(217, 4, 41, 0.15);
+            transform: translateY(-4px);
+        }
+
+        /* Modal transitions */
+        .modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .modal-content-anim { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .modal.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .modal.hidden .modal-content-anim { transform: scale(0.95) translateY(20px); }
+
+        /* FAQ Transitions */
+        .faq-body {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .faq-body.active {
+            max-height: 500px; /* high enough for most answers */
+            opacity: 1;
+        }
+        .faq-icon-rotate { transform: rotate(45deg); }
+    </style>
+</head>
+<body class="bg-lightGray antialiased text-gray-600">
+
+    <!-- Navigation (Sticky & Glass) -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-display font-extrabold text-anthracite flex items-center gap-2">
+                <div class="w-8 h-8 bg-maxRed rounded-lg flex items-center justify-center text-white text-sm">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                Max_<span class="text-maxRed">Adis</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#boutique" class="nav-link">Boutique</a>
+                <a href="#projets" class="nav-link">Projets</a>
+                <a href="#formations" class="nav-link">Formations</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#avis" class="nav-link">Avis</a>
+                <button onclick="openCartModal()" class="text-anthracite hover:text-maxRed font-semibold flex items-center gap-2 ml-2">
+                    <i class="fas fa-shopping-cart"></i> <span id="nav-cart-count" class="bg-maxRed text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center -ml-1 -mt-3 shadow-sm border-2 border-white">0</span>
+                </button>
+                <a href="#contact" class="bg-maxRed text-white px-6 py-2.5 rounded-full font-semibold hover:bg-maxDarkRed hover:shadow-red-glow transition-all transform hover:-translate-y-0.5 ml-4">
+                    Contactez-nous
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-anthracite text-2xl focus:outline-none" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="#services" class="text-anthracite font-medium" onclick="toggleMobileMenu()">Services</a>
+                <a href="#boutique" class="text-anthracite font-medium" onclick="toggleMobileMenu()">Boutique</a>
+                <a href="#projets" class="text-anthracite font-medium" onclick="toggleMobileMenu()">Projets</a>
+                <a href="#formations" class="text-anthracite font-medium" onclick="toggleMobileMenu()">Formations</a>
+                <a href="#faq" class="text-anthracite font-medium" onclick="toggleMobileMenu()">FAQ</a>
+                <a href="#avis" class="text-anthracite font-medium" onclick="toggleMobileMenu()">Avis</a>
+                <a href="#contact" class="text-anthracite font-medium" onclick="toggleMobileMenu()">Contact</a>
+                <button onclick="openCartModal(); toggleMobileMenu();" class="text-left text-maxRed font-bold flex items-center gap-2 mt-2">
+                    <i class="fas fa-shopping-cart"></i> Mon Panier (<span id="mobile-cart-count">0</span>)
+                </button>
+                <a href="#contact" class="bg-maxRed text-white text-center px-6 py-3 rounded-full font-bold mt-2" onclick="toggleMobileMenu()">Devis Gratuit</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Split Layout) -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+        <!-- Abstract Red blobs in background -->
+        <div class="absolute top-20 left-[-10%] w-96 h-96 bg-maxRed rounded-full mix-blend-multiply filter blur-[100px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-80 h-80 bg-maxDarkRed rounded-full mix-blend-multiply filter blur-[100px] animate-pulse-slow" style="animation-delay:2s"></div>
+
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Content -->
+                <div class="text-left space-y-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-maxRed font-semibold text-sm">
+                        <span class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-maxRed opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-maxRed"></span>
+                        </span>
+                        Expertise en Ingénierie
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-display font-extrabold text-anthracite leading-tight tracking-tight">
+                        Innovez avec la <span class="text-transparent bg-clip-text bg-gradient-to-r from-maxRed to-maxDarkRed">Technologie</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-500 max-w-lg leading-relaxed">
+                        Max_Adis est votre partenaire de confiance au Bénin pour la conception de systèmes domotiques, robotiques et la vente de composants électroniques professionnels.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#boutique" class="flex items-center justify-center gap-2 bg-maxRed text-white px-8 py-4 rounded-full font-bold hover:bg-maxDarkRed hover:shadow-red-glow transition-all transform hover:-translate-y-1">
+                            Acheter des composants <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#formations" class="flex items-center justify-center gap-2 bg-white text-anthracite border border-gray-200 px-8 py-4 rounded-full font-bold hover:border-gray-300 hover:bg-gray-50 transition-all">
+                            Voir nos formations
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="pt-8 flex items-center gap-6 border-t border-gray-100">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white"></div>
+                            <div class="w-10 h-10 rounded-full bg-gray-300 border-2 border-white"></div>
+                            <div class="w-10 h-10 rounded-full bg-gray-400 border-2 border-white"></div>
+                            <div class="w-10 h-10 rounded-full bg-maxRed text-white flex items-center justify-center text-xs font-bold border-2 border-white">+500</div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-500">Étudiants et clients <br>satisfaits au Bénin.</p>
+                    </div>
+                </div>
+
+                <!-- Right Visual — Image Grid (visible on all screens) -->
+                <div class="relative mt-10 lg:mt-0">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <div class="rounded-2xl overflow-hidden shadow-premium aspect-square">
+                                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Electronique" class="w-full h-full object-cover">
+                            </div>
+                            <div class="bg-white rounded-2xl p-5 shadow-premium border border-gray-100">
+                                <div class="text-maxRed mb-2"><i class="fas fa-shipping-fast text-2xl"></i></div>
+                                <div class="font-bold text-anthracite text-sm">Livraison Locale</div>
+                                <div class="text-xs text-gray-400 mt-1">Porto-Novo & Cotonou</div>
+                            </div>
+                        </div>
+                        <div class="space-y-4 pt-8">
+                            <div class="bg-white rounded-2xl p-5 shadow-premium border border-gray-100">
+                                <div class="text-maxRed mb-2"><i class="fas fa-headset text-2xl"></i></div>
+                                <div class="font-bold text-anthracite text-sm">Support 7j/7</div>
+                                <div class="text-xs text-gray-400 mt-1">Aide technique via WhatsApp</div>
+                            </div>
+                            <div class="rounded-2xl overflow-hidden shadow-premium aspect-square">
+                                <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Robotique" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white border border-gray-100 shadow-xl rounded-full px-5 py-2.5 flex items-center gap-3 whitespace-nowrap">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <span class="text-sm font-bold text-anthracite">+500 clients satisfaits au Bénin</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos" class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-3xl md:text-5xl font-display font-extrabold text-anthracite">Qui sommes-<span class="text-maxRed">nous ?</span></h2>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        Chez Max_Adis, nous croyons que l'innovation technologique doit être accessible à tous. Basés au cœur du Bénin, nous accompagnons les passionnés, les étudiants et les entreprises dans la réalisation de leurs projets les plus ambitieux.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        Forts de notre expertise en domotique, robotique et systèmes embarqués, nous ne nous contentons pas de vendre des composants : nous formons la prochaine génération de créateurs technologiques.
+                    </p>
+                    <ul class="space-y-3 mt-4">
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fas fa-check-circle text-maxRed"></i> Conseil personnalisé pour chaque projet
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fas fa-check-circle text-maxRed"></i> Matériel de pointe testé et approuvé
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fas fa-check-circle text-maxRed"></i> Pédagogie axée sur 100% de pratique
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-maxRed rounded-2xl transform rotate-3 scale-105 opacity-10"></div>
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Ingénierie électronique" class="rounded-2xl shadow-premium relative z-10 w-full h-[400px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-lightGray">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-display font-extrabold text-anthracite mb-6">Nos Domaines d'<span class="text-maxRed">Intervention</span></h2>
+                <p class="text-gray-500 text-lg">Nous combinons l'expertise technique et la pédagogie pour vous offrir des solutions complètes.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-premium card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-maxRed text-2xl mb-6">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-display text-anthracite mb-3">Boutique Électronique</h3>
+                    <p class="text-gray-500 mb-6 line-clamp-3">Vente de cartes Arduino, Raspberry Pi, capteurs, actionneurs et outillage pour donner vie à toutes vos idées.</p>
+                    <a href="#boutique" class="text-maxRed font-semibold hover:text-maxDarkRed inline-flex items-center gap-2 group">
+                        Découvrir la boutique <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-premium card-hover border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-[100px] -z-10 transition-all group-hover:bg-maxRed"></div>
+                    <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-maxRed text-2xl mb-6">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-display text-anthracite mb-3">Réalisation de Projets</h3>
+                    <p class="text-gray-500 mb-6 line-clamp-3">Conception sur-mesure de systèmes domotiques, IoT et de robotique éducative ou industrielle pour vos besoins spécifiques.</p>
+                    <a href="#projets" class="text-maxRed font-semibold hover:text-maxDarkRed inline-flex items-center gap-2 group">
+                        Voir nos réalisations <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-premium card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-maxRed text-2xl mb-6">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-display text-anthracite mb-3">Formations Pratiques</h3>
+                    <p class="text-gray-500 mb-6 line-clamp-3">Apprenez à coder et à réaliser vos propres projets avec notre plateforme de formations claires, structurées et pratiques.</p>
+                    <a href="#formations" class="text-maxRed font-semibold hover:text-maxDarkRed inline-flex items-center gap-2 group">
+                        Accéder aux cours <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boutique Section -->
+    <section id="boutique" class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div class="max-w-xl">
+                    <h2 class="text-3xl md:text-5xl font-display font-extrabold text-anthracite mb-4">La <span class="text-maxRed">Boutique</span></h2>
+                    <p class="text-gray-500 mb-6">Trouvez les meilleurs composants pour vos projets.</p>
+                    
+                    <!-- Search Bar -->
+                    <div class="relative w-full max-w-md">
+                        <input type="text" id="searchInput" onkeyup="searchShop()" placeholder="Rechercher un composant... (ex: ESP32, Servo)" class="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:border-maxRed focus:ring-2 focus:ring-maxRed/20 transition-all font-medium text-gray-600 shadow-sm text-sm">
+                        <i class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn active px-5 py-2 rounded-full text-sm font-semibold bg-anthracite text-white transition-all shadow-sm" data-filter="all" onclick="filterShop('all', this)">Tous</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition-all" data-filter="cartes" onclick="filterShop('cartes', this)">Cartes & Modules</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition-all" data-filter="capteurs" onclick="filterShop('capteurs', this)">Capteurs</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition-all" data-filter="moteurs" onclick="filterShop('moteurs', this)">Moteurs</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition-all" data-filter="composants" onclick="filterShop('composants', this)">Composants Base</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition-all" data-filter="accessoires" onclick="filterShop('accessoires', this)">Accessoires & Outils</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-grid">
+                
+                <!-- JS Injected Products -->
+
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-flex items-center gap-2 bg-white text-anthracite border border-gray-200 px-8 py-4 rounded-full font-bold hover:border-maxRed hover:text-maxRed transition-all">
+                    Demander le catalogue complet <i class="fas fa-file-pdf"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets Réalisés Section -->
+    <section id="projets" class="py-24 bg-anthracite text-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-xl">
+                    <span class="text-maxRed text-sm font-bold uppercase tracking-widest mb-3 block">Portfolio</span>
+                    <h2 class="text-3xl md:text-5xl font-display font-extrabold mb-4">Nos <span class="text-maxRed">Réalisations</span></h2>
+                    <p class="text-gray-400">Découvrez nos créations en robotique, domotique et systèmes intelligents. Chaque projet est une preuve de notre savoir-faire.</p>
+                </div>
+                <a href="https://tiktok.com/@maxadis" target="_blank" class="shrink-0 flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white hover:text-anthracite transition-all">
+                    Voir sur TikTok <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+                <!-- Chargé dynamiquement depuis Google Sheets ou données par défaut -->
+            </div>
+                        <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-12 border-t border-white/10">
+                <div class="text-center"><div class="text-4xl font-display font-extrabold text-maxRed mb-1">50+</div><div class="text-gray-400 text-sm">Projets réalisés</div></div>
+                <div class="text-center"><div class="text-4xl font-display font-extrabold text-maxRed mb-1">100+</div><div class="text-gray-400 text-sm">Étudiants formés</div></div>
+                <div class="text-center"><div class="text-4xl font-display font-extrabold text-maxRed mb-1">3</div><div class="text-gray-400 text-sm">Années d'expérience</div></div>
+                <div class="text-center"><div class="text-4xl font-display font-extrabold text-maxRed mb-1">24h</div><div class="text-gray-400 text-sm">Support réactif</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formations Section (Premium e-learning style) -->
+    <section id="formations" class="py-24 bg-lightGray relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gray-200 rounded-full mix-blend-multiply filter blur-[80px] opacity-50"></div>
+        
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-display font-extrabold text-anthracite mb-6"><span class="text-maxRed">Académie</span> Max_Adis</h2>
+                <p class="text-gray-500 text-lg">Montez en compétence avec des cours en ligne structurés, orientés sur la pratique à 100%.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="courses-grid">
+                <!-- JS Injected Courses -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ Section ===== -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-12 max-w-4xl">
+            <div class="text-center mb-16">
+                <span class="text-maxRed text-sm font-bold uppercase tracking-widest mb-3 block">Questions Fréquentes</span>
+                <h2 class="text-3xl md:text-5xl font-display font-extrabold text-anthracite mb-4">F<span class="text-maxRed">AQ</span></h2>
+                <p class="text-gray-500">Tout ce que vous devez savoir avant de commander ou de s'inscrire.</p>
+            </div>
+
+            <div class="space-y-4" id="faqList">
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-100 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-5 text-left font-display font-bold text-anthracite hover:text-maxRed transition-colors">
+                        <span>Comment commander un composant ?</span>
+                        <i class="fas fa-plus text-maxRed transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+                        C'est simple ! Parcourez la boutique, ajoutez vos composants au panier, puis cliquez sur "Commander via WhatsApp". Un message complet avec votre liste et le total sera automatiquement envoyé à notre équipe qui vous confirmera la commande sous 1h.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-100 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-5 text-left font-display font-bold text-anthracite hover:text-maxRed transition-colors">
+                        <span>Quels sont les moyens de paiement acceptés ?</span>
+                        <i class="fas fa-plus text-maxRed transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+                        Nous acceptons les paiements via <strong>MTN Mobile Money</strong>, <strong>Moov Money</strong>, et en espèces pour les livraisons locales (Porto-Novo & Cotonou). Des facilités de paiement peuvent être accordées pour les grosses commandes.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-100 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-5 text-left font-display font-bold text-anthracite hover:text-maxRed transition-colors">
+                        <span>Faites-vous la livraison à domicile ?</span>
+                        <i class="fas fa-plus text-maxRed transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+                        Oui ! Nous livrons à <strong>Porto-Novo</strong> et <strong>Cotonou</strong>. Des frais de livraison peuvent s'appliquer selon votre zone. Vous pouvez aussi récupérer votre commande directement chez nous. Contactez-nous sur WhatsApp pour convenir d'un point de rencontre.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border border-gray-100 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-5 text-left font-display font-bold text-anthracite hover:text-maxRed transition-colors">
+                        <span>Les formations sont-elles en ligne ou en présentiel ?</span>
+                        <i class="fas fa-plus text-maxRed transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+                        Les deux sont disponibles ! Nos formations peuvent se faire <strong>en ligne via WhatsApp/Zoom</strong> avec des cours vidéo et exercices pratiques, ou <strong>en présentiel à Porto-Novo</strong> pour un accompagnement direct. Choisissez la formule selon vos disponibilités.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="border border-gray-100 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-5 text-left font-display font-bold text-anthracite hover:text-maxRed transition-colors">
+                        <span>J'ai aucune expérience, puis-je quand même apprendre ?</span>
+                        <i class="fas fa-plus text-maxRed transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+                        Absolument ! Nos formations commencent de <strong>zéro</strong>. Pas besoin d'avoir des bases en électronique ou en programmation. Nous avons même un cours de simulation gratuit (Wokwi & Proteus) pour pratiquer sans aucun matériel.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="border border-gray-100 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-5 text-left font-display font-bold text-anthracite hover:text-maxRed transition-colors">
+                        <span>Les composants sont-ils compatibles Arduino et Raspberry Pi ?</span>
+                        <i class="fas fa-plus text-maxRed transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+                        La grande majorité de nos composants sont <strong>universels</strong> et compatibles avec Arduino (5V), ESP32 (3.3V) et Raspberry Pi. Chaque fiche produit indique les tensions et protocoles supportés. En cas de doute, notre équipe peut vous conseiller sur la compatibilité.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Testimonials Section ===== -->
+    <section id="avis" class="py-24 bg-lightGray">
+        <div class="container mx-auto px-4 md:px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <span class="text-maxRed text-sm font-bold uppercase tracking-widest mb-3 block">Ils nous font confiance</span>
+                <h2 class="text-3xl md:text-5xl font-display font-extrabold text-anthracite mb-4">Avis <span class="text-maxRed">Clients</span></h2>
+                <p class="text-gray-500">Ce que disent nos étudiants et clients au Bénin.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-2xl p-7 shadow-premium border border-gray-100 card-hover flex flex-col">
+                    <div class="flex gap-1 text-yellow-400 mb-4 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 flex-1">"J'ai acheté un Arduino Uno + les capteurs. Tout était bien emballé et livré rapidement. Max_Adis m'a même aidé par WhatsApp à faire marcher mon premier projet !"</p>
+                    <div class="flex items-center gap-3 border-t border-gray-50 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-maxRed text-white flex items-center justify-center font-bold text-sm">KA</div>
+                        <div>
+                            <div class="font-bold text-anthracite text-sm">Kouassi Arthur</div>
+                            <div class="text-xs text-gray-400">Étudiant BTS, Porto-Novo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-2xl p-7 shadow-premium border border-gray-100 card-hover flex flex-col">
+                    <div class="flex gap-1 text-yellow-400 mb-4 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 flex-1">"La formation Arduino est très complète. J'ai pu créer mon propre système d'arrosage connecté en seulement 2 semaines. Je recommande vivement !"</p>
+                    <div class="flex items-center gap-3 border-t border-gray-50 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-sm">FB</div>
+                        <div>
+                            <div class="font-bold text-anthracite text-sm">Fidèle Bossou</div>
+                            <div class="text-xs text-gray-400">Ingénieur, Cotonou</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-2xl p-7 shadow-premium border border-gray-100 card-hover flex flex-col">
+                    <div class="flex gap-1 text-yellow-400 mb-4 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 flex-1">"J'ai commandé des ESP32 et des relais pour mon projet domotique. Qualité top, prix très raisonnables par rapport à ce qu'on trouve en ville."</p>
+                    <div class="flex items-center gap-3 border-t border-gray-50 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-sm">MA</div>
+                        <div>
+                            <div class="font-bold text-anthracite text-sm">Mélissa Ahounou</div>
+                            <div class="text-xs text-gray-400">Technicienne, Abomey-Calavi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Contact Section ===== -->
+    <section id="contact" class="py-24 bg-anthracite text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-maxRed rounded-full mix-blend-multiply filter blur-[120px] opacity-10"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-maxRed rounded-full mix-blend-multiply filter blur-[120px] opacity-10"></div>
+
+        <div class="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Info -->
+                <div>
+                    <span class="text-maxRed text-sm font-bold uppercase tracking-widest mb-4 block">Parlons de votre projet</span>
+                    <h2 class="text-3xl md:text-5xl font-display font-extrabold mb-6">Contactez-<span class="text-maxRed">nous</span></h2>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">Une question sur un composant ? Un projet en tête ? Envoyez-nous un message et notre équipe vous répond sous <strong class="text-white">moins d'1 heure</strong>.</p>
+
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-maxRed text-lg shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Adresse</div>
+                                <div class="text-gray-400 text-sm">Porto-Novo, République du Bénin</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-maxRed text-lg shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Téléphone</div>
+                                <div class="text-gray-400 text-sm">+229 01 54 11 64 25</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-maxRed text-lg shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Email</div>
+                                <div class="text-gray-400 text-sm"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a6cbc7decec9d3c8cdd6c7d2cfc8969697e6c1cbc7cfca88c5c9cb">[email&#160;protected]</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Form -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                    <h3 class="text-2xl font-display font-bold mb-6">Envoyer un message</h3>
+                    <div id="contactSuccess" class="hidden" style="display:none">
+                        <div class="flex flex-col items-center justify-center py-10 text-center space-y-4">
+                            <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center"><i class="fas fa-check text-green-400 text-2xl"></i></div>
+                            <h4 class="text-xl font-display font-bold text-white">Message envoyé !</h4>
+                            <p class="text-gray-400 text-sm">Nous répondrons à <span id="successEmail" class="text-white font-semibold"></span> rapidement.</p>
+                            <button onclick="resetContact()" class="text-maxRed text-sm font-semibold hover:underline">Envoyer un autre message</button>
+                        </div>
+                    </div>
+                    <form id="contactForm" class="space-y-4" onsubmit="submitContact(event)">
+                        <input type="hidden" name="access_key" value="5c3901d9-cddf-4c0c-b71f-7a46909cf3e0">
+                        <input type="hidden" name="to" value="maxadiscontact@gmail.com">
+                        <input type="hidden" name="subject" value="Nouveau message - Max_Adis">
+                        <div><label class="text-sm text-gray-400 font-medium mb-1.5 block">Votre nom *</label><input type="text" name="name" required placeholder="Ex: Jean Dupont" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-maxRed transition-colors text-sm"></div>
+                        <div><label class="text-sm text-gray-400 font-medium mb-1.5 block">Votre email *</label><input type="email" id="contactEmailField" name="email" required placeholder="jean@gmail.com" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-maxRed transition-colors text-sm"></div>
+                        <div><label class="text-sm text-gray-400 font-medium mb-1.5 block">Sujet</label>
+                            <select name="subject_choice" class="w-full bg-anthracite border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-maxRed transition-colors text-sm">
+                                <option>Je veux commander des composants</option>
+                                <option>Je veux m'inscrire à une formation</option>
+                                <option>J'ai un projet à réaliser</option>
+                                <option>Demander un devis</option>
+                                <option>Autre question</option>
+                            </select>
+                        </div>
+                        <div><label class="text-sm text-gray-400 font-medium mb-1.5 block">Message *</label><textarea name="message" rows="4" required placeholder="Décrivez votre projet..." class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-maxRed transition-colors text-sm resize-none"></textarea></div>
+                        <div id="contactErr" class="hidden bg-red-500/20 border border-red-500/30 rounded-xl px-4 py-3 text-red-300 text-sm"></div>
+                        <button type="submit" id="contactBtn" class="w-full bg-maxRed hover:bg-maxDarkRed text-white font-bold py-4 px-6 rounded-xl transition-all flex justify-center items-center gap-3 transform hover:-translate-y-1">
+                            <i class="fas fa-paper-plane"></i> <span id="contactBtnTxt">Envoyer le message</span>
+                        </button>
+                        <div class="flex items-center gap-3"><div class="flex-1 h-px bg-white/10"></div><span class="text-xs text-gray-500">ou</span><div class="flex-1 h-px bg-white/10"></div></div>
+                        <button type="button" onclick="sendContactWhatsApp()" class="w-full bg-[#25D366]/20 border border-[#25D366]/30 text-[#25D366] font-semibold py-3 rounded-xl flex justify-center items-center gap-3 text-sm hover:bg-[#25D366]/30 transition-all">
+                            <i class="fab fa-whatsapp text-lg"></i> Contacter sur WhatsApp
+                        </button>
+                        <p class="text-xs text-center text-gray-500">Réponse en moins d'1 heure !</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Floating WhatsApp Button ===== -->
+    <a href="https://wa.me/+2290154116425?text=Bonjour%20Max_Adis%20!" target="_blank" id="whatsappFab"
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#1EB558] text-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.5)] transition-all hover:scale-110 hover:shadow-[0_6px_25px_rgba(37,211,102,0.6)]">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-maxRed rounded-full flex items-center justify-center">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-maxRed opacity-75"></span>
+        </span>
+    </a>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-anthracite text-white pt-20 pb-10 border-t-4 border-maxRed">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <div class="col-span-1 lg:col-span-1">
+                    <a href="#" class="text-3xl font-display font-extrabold text-white flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-maxRed rounded-lg flex items-center justify-center text-white text-sm">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        Max_<span class="text-maxRed">Adis</span>
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Ingénierie, Robotique et Formation. Des solutions innovantes pour les professionnels et les passionnés de technologie au Bénin.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://wa.me/+2290154116425" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-maxRed transition-colors"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://tiktok.com/@maxadis" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-maxRed transition-colors"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-display font-bold text-lg mb-6 text-white">Navigation</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#services" class="hover:text-maxRed transition-colors">Services</a></li>
+                        <li><a href="#boutique" class="hover:text-maxRed transition-colors">La Boutique</a></li>
+                        <li><a href="#projets" class="hover:text-maxRed transition-colors">Réalisations</a></li>
+                        <li><a href="#formations" class="hover:text-maxRed transition-colors">Académie</a></li>
+                        <li><a href="#faq" class="hover:text-maxRed transition-colors">FAQ</a></li>
+                        <li><a href="#avis" class="hover:text-maxRed transition-colors">Avis Clients</a></li>
+                        <li><a href="#contact" class="hover:text-maxRed transition-colors">Nous Contacter</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-display font-bold text-lg mb-6 text-white">Contact Direct</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-maxRed mt-1"></i>
+                            <span>Porto-Novo, République du Bénin</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-phone-alt text-maxRed mt-1"></i>
+                            <span>+229 01 54 11 64 25</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-envelope text-maxRed mt-1"></i>
+                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d202c3525223823263d2c3924237d7d7c0d2a202c2421632e2220">[email&#160;protected]</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-lg mb-6 text-white">Moyens de Paiement</h4>
+                    <p class="text-gray-400 text-sm mb-4">Paiements sécurisés en ligne ou via Mobile Money locaux.</p>
+                    <div class="flex gap-3">
+                        <div class="bg-yellow-400 text-black text-xs font-bold px-3 py-2 rounded">MTN MoMo</div>
+                        <div class="bg-blue-600 text-white text-xs font-bold px-3 py-2 rounded">MOOV Money</div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2025 Max_Adis Engineering. Tous droits réservés.</p>
+                <p class="mt-2 md:mt-0">Design & Développé avec <i class="fas fa-heart text-maxRed mx-1"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS SECTION -->
+    
+    <!-- Cart Modal (Slide Over) -->
+    <div id="cartModal" class="fixed inset-0 z-[100] modal hidden flex justify-end">
+        <div class="absolute inset-0 bg-anthracite/80 backdrop-blur-sm" onclick="closeModals()"></div>
+        <div class="modal-content-anim relative bg-white w-full max-w-md h-full shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
+            <div class="bg-lightGray px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+                <h3 class="text-xl font-display font-bold text-anthracite flex items-center gap-2"><i class="fas fa-shopping-cart text-maxRed"></i> Mon Panier</h3>
+                <button onclick="closeModals()" class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-maxRed hover:border-maxRed transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cartItemsContainer" class="p-6 overflow-y-auto flex-1 custom-scrollbar space-y-4">
+                <!-- Injected via JS -->
+            </div>
+            
+            <div class="p-6 bg-white border-t border-gray-100 mt-auto shadow-[0_-10px_20px_rgba(0,0,0,0.05)] relative z-10">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-gray-500 font-medium font-display uppercase tracking-wider text-sm">Total Estimé</span>
+                    <span id="cartTotal" class="text-2xl font-extrabold text-maxRed">0 FCFA</span>
+                </div>
+                <button onclick="openOrderModal()" class="w-full bg-maxRed hover:bg-maxDarkRed text-white font-bold py-4 px-6 rounded-xl transition-all shadow-red-glow flex justify-center items-center gap-3 transform hover:-translate-y-1">
+                    <i class="fab fa-whatsapp text-xl"></i> Commander via WhatsApp
+                </button>
+                <p class="text-xs text-center text-gray-400 mt-3">* Les articles "Sur Devis" nécessiteront une discussion.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Curriculum Modal (Professional E-learning feel) -->
+    <div id="courseModal" class="fixed inset-0 z-[100] modal hidden flex items-center justify-center px-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-anthracite/80 backdrop-blur-sm" onclick="closeModals()"></div>
+        
+        <!-- Modal Content -->
+        <div class="modal-content-anim relative bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- Header -->
+            <div class="bg-lightGray px-6 py-4 border-b border-gray-100 flex justify-between items-center sticky top-0">
+                <div>
+                    <span class="text-xs font-bold text-maxRed uppercase tracking-wider mb-1 block">Programme détaillé</span>
+                    <h3 id="modalCourseTitle" class="text-xl font-display font-bold text-anthracite">Titre du cours</h3>
+                </div>
+                <button onclick="closeModals()" class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-maxRed hover:border-maxRed transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Body (Scrollable) -->
+            <div class="p-6 overflow-y-auto flex-1 custom-scrollbar">
+                
+                <div class="bg-red-50 border border-red-100 rounded-xl p-4 mb-6 flex gap-4">
+                    <div class="text-maxRed text-2xl"><i class="fas fa-bullseye"></i></div>
+                    <div>
+                        <h4 class="font-bold text-anthracite text-sm mb-1">Ce que vous allez apprendre</h4>
+                        <ul id="modalCourseSummary" class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                            <!-- Injected by JS -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-display font-bold text-lg mb-4 text-anthracite border-b pb-2">Contenu du cours</h4>
+                
+                <div id="modalCourseCurriculum" class="space-y-3">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+            
+            <!-- Footer (Call to action) -->
+            <div class="p-6 bg-white border-t border-gray-100 mt-auto">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm text-gray-500">Paiement unique, accès à vie</span>
+                    <span id="modalCoursePrice" class="text-2xl font-extrabold text-maxRed">0 FCFA</span>
+                </div>
+                <a id="modalBuyLink" href="#" target="_blank" class="block w-full text-center bg-maxRed hover:bg-maxDarkRed text-white font-bold py-4 px-6 rounded-xl transition-all shadow-red-glow hover:-translate-y-1">
+                    <i class="fab fa-whatsapp text-lg mr-2"></i> M'inscrire via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="productModal" class="fixed inset-0 z-[100] modal hidden flex items-center justify-center px-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-anthracite/80 backdrop-blur-sm" onclick="closeModals()"></div>
+        
+        <!-- Modal Content -->
+        <div class="modal-content-anim relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <!-- Close Button -->
+            <button onclick="closeModals()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/50 backdrop-blur-md border border-gray-200 flex items-center justify-center text-gray-600 hover:text-maxRed hover:bg-white transition-all">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="flex flex-col md:flex-row flex-1">
+                <!-- Product Image Left Side -->
+                <div class="w-full md:w-1/2 bg-gray-50 flex items-center justify-center p-8 border-b md:border-b-0 md:border-r border-gray-100">
+                    <img id="modalProductImg" src="" alt="Produit" class="max-h-64 object-contain rounded-lg shadow-sm">
+                </div>
+
+                <!-- Product Details Right Side -->
+                <div class="w-full md:w-1/2 p-8 flex flex-col">
+                    <div id="modalProductTag" class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Tag</div>
+                    <h3 id="modalProductName" class="text-2xl font-display font-bold text-anthracite mb-4 leading-tight">Nom du Produit</h3>
+                    
+                    <div class="flex-1 overflow-y-auto custom-scrollbar pr-4 -mr-4">
+                        <p id="modalProductDescription" class="text-gray-500 text-sm mb-6">
+                            Composant électronique de haute qualité pour vos projets d'ingénierie, robotique ou domotique. Compatible avec les standards actuels.
+                        </p>
+
+                        <h4 class="font-display font-bold text-lg mb-3 text-anthracite border-b pb-2">Spécifications Techniques</h4>
+                        <table class="w-full text-sm text-gray-600 mb-6">
+                            <tbody id="modalProductSpecs">
+                                <!-- Injected by JS -->
+                                <tr class="border-b border-gray-100 last:border-b-0">
+                                    <td class="py-2 font-medium text-gray-700">Tension d'alimentation</td>
+                                    <td class="py-2 text-right">5V DC</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 last:border-b-0">
+                                    <td class="py-2 font-medium text-gray-700">Interface</td>
+                                    <td class="py-2 text-right">I2C / SPI</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 last:border-b-0">
+                                    <td class="py-2 font-medium text-gray-700">Dimensions</td>
+                                    <td class="py-2 text-right">20x15x5 mm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-auto border-t border-gray-100 pt-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-gray-400 font-medium text-sm">Prix unitaire</span>
+                            <span id="modalProductPrice" class="text-3xl font-extrabold text-maxRed">0 FCFA</span>
+                        </div>
+                        
+                        <button id="modalProductAddBtn" class="w-full bg-maxRed hover:bg-maxDarkRed text-white font-bold py-4 px-6 rounded-xl transition-all shadow-[0_4px_15px_rgba(217,4,41,0.3)] flex justify-center items-center gap-3 transform hover:-translate-y-1">
+                            <i class="fas fa-cart-plus text-lg"></i> Ajouter au panier
+                        </button>
+                        <p class="text-xs text-center text-gray-400 mt-3"><i class="fas fa-shield-alt text-green-500"></i> Qualité garantie par Max_Adis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Navbar Scrolled State
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-sm');
+                nav.style.borderBottom = '1px solid rgba(0,0,0,0.05)';
+            } else {
+                nav.classList.remove('shadow-sm');
+                nav.style.borderBottom = '1px solid transparent';
+            }
+        });
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        }
+
+        // Shop Filter
+        function filterShop(category, btn) {
+            // Update buttons active state
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('bg-anthracite', 'text-white');
+                b.classList.add('bg-white', 'text-gray-600');
+            });
+            btn.classList.add('bg-anthracite', 'text-white');
+            btn.classList.remove('bg-white', 'text-gray-600');
+
+            // Filter items
+            const items = document.querySelectorAll('.product-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains('filter-' + category)) {
+                    item.style.display = 'block';
+                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.95)';
+                    setTimeout(() => { item.style.display = 'none'; }, 300);
+                }
+            });
+        }
+
+        // --- CART LOGIC ---
+        let cart = [];
+
+        function addToCart(id) {
+            const item = shopItems.find(p => p.id === id);
+            if(!item) return;
+            
+            const existingItem = cart.find(c => c.id === id);
+            if(existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ ...item, qty: 1 });
+            }
+            updateCartUI();
+            
+            // Visual feedback
+            const cartIcon = document.getElementById('nav-cart-count');
+            cartIcon.classList.add('scale-150');
+            setTimeout(() => cartIcon.classList.remove('scale-150'), 300);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(c => c.id !== id);
+            updateCartUI();
+        }
+
+        function updateCartQuantity(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if(item) {
+                item.qty += delta;
+                if(item.qty <= 0) {
+                    removeFromCart(id);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotal');
+            const navCount = document.getElementById('nav-cart-count');
+            const mobCount = document.getElementById('mobile-cart-count');
+            
+            // Update Counts
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            navCount.innerText = totalQty;
+            mobCount.innerText = totalQty;
+            
+            // Render Items
+            if(cart.length === 0) {
+                container.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-gray-400 space-y-4">
+                    <i class="fas fa-shopping-basket text-4xl mb-2 opacity-50"></i>
+                    <p>Votre panier est vide.</p>
+                </div>`;
+                totalEl.innerText = "0 FCFA";
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            let hasDevis = false;
+
+            cart.forEach(item => {
+                const itemTotal = typeof item.price === 'number' ? item.price * item.qty : 0;
+                if(typeof item.price === 'number') total += itemTotal;
+                else hasDevis = true;
+
+                html += `
+                <div class="flex gap-4 p-3 border border-gray-100 rounded-xl bg-gray-50/50">
+                    <img src="${item.img}" class="w-16 h-16 object-cover rounded-lg">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-anthracite text-sm leading-tight mb-1">${item.name}</h4>
+                        <div class="text-maxRed font-extrabold text-sm mb-2">${typeof item.price === 'number' ? item.price + ' FCFA' : 'Sur Devis'}</div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="updateCartQuantity('${item.id}', -1)" class="w-6 h-6 rounded bg-white border border-gray-200 flex items-center justify-center text-xs hover:border-gray-300">-</button>
+                            <span class="text-sm font-bold w-4 text-center">${item.qty}</span>
+                            <button onclick="updateCartQuantity('${item.id}', 1)" class="w-6 h-6 rounded bg-white border border-gray-200 flex items-center justify-center text-xs hover:border-gray-300">+</button>
+                            <button onclick="removeFromCart('${item.id}')" class="ml-auto text-gray-400 hover:text-red-500 text-xs"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+
+            container.innerHTML = html;
+            totalEl.innerText = total > 0 ? total + ' FCFA' + (hasDevis ? ' + Devis' : '') : (hasDevis ? 'Sur Devis' : '0 FCFA');
+        }
+
+        function checkoutWhatsApp() {
+            if(cart.length === 0) {
+                alert("Votre panier est vide !");
+                return;
+            }
+            
+            let text = "Bonjour Max_Adis ! Je souhaite commander les composants suivants :\n\n";
+            let total = 0;
+            
+            cart.forEach(item => {
+                text += `▪ ${item.qty}x ${item.name} `;
+                if(typeof item.price === 'number') {
+                    text += `- ${item.price * item.qty} FCFA\n`;
+                    total += item.price * item.qty;
+                } else {
+                    text += `- Prix sur Devis\n`;
+                }
+            });
+            
+            text += `\n*TOTAL ESTIMÉ : ${total} FCFA*`;
+            
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://wa.me/+2290154116425?text=${encodedText}`, '_blank');
+        }
+
+        const shopItems = [
+            // Cartes & Modules
+            { id: 'p1', name: "Arduino Uno R3", cat: "cartes", price: 4500, img: "images/arduino.png", tag: "Microcontrôleur",
+              desc: "La carte Arduino Uno R3 est la référence pour débuter en électronique et robotique. Idéale pour les projets éducatifs et les prototypes.",
+              specs: [{k:"Microcontrôleur", v:"ATmega328P"},{k:"Tension d'entrée", v:"7-12 V"},{k:"Tensions de sortie", v:"5V / 3.3V"},{k:"Broches digitales", v:"14 (dont 6 PWM)"},{k:"Broches analogiques", v:"6"},{k:"Mémoire Flash", v:"32 KB"},{k:"Fréquence", v:"16 MHz"},{k:"Connecteur", v:"USB Type B"}]
+            },
+            { id: 'p2', name: "Arduino Nano", cat: "cartes", price: 3000, img: "https://images.unsplash.com/photo-1553406830-ef2513450d76?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Platine compacte",
+              desc: "Version compacte de l'Arduino Uno, idéale pour les projets avec espace réduit. Compatible breadboard.",
+              specs: [{k:"Microcontrôleur", v:"ATmega328P"},{k:"Tension d'alimentation", v:"5V"},{k:"Broches I/O", v:"22 (14 digitales)"},{k:"Mémoire Flash", v:"32 KB"},{k:"Fréquence", v:"16 MHz"},{k:"Connecteur", v:"Mini USB"}]
+            },
+            { id: 'p3', name: "Arduino Mega", cat: "cartes", price: 7000, img: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Multi IO",
+              desc: "Version étendue avec 54 broches numériques et 16 analogiques. Pour les projets complexes multi-capteurs.",
+              specs: [{k:"Microcontrôleur", v:"ATmega2560"},{k:"Tension d'entrée", v:"7-12 V"},{k:"Broches digitales", v:"54 (dont 15 PWM)"},{k:"Broches analogiques", v:"16"},{k:"Mémoire Flash", v:"256 KB"},{k:"UART", v:"4 ports série"}]
+            },
+            { id: 'p4', name: "ESP32 (Standard)", cat: "cartes", price: 6500, img: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Carte IoT", badge: "POPULAIRE",
+              desc: "Le module ESP32 est la carte IoT de référence avec Wi-Fi et Bluetooth intégrés. Parfait pour la domotique et les projets connectés.",
+              specs: [{k:"CPU", v:"Dual-core 240 MHz"},{k:"RAM", v:"520 KB SRAM"},{k:"Connectivité", v:"Wi-Fi 802.11 b/g/n + BT 4.2"},{k:"Tension d'alimentation", v:"3.3V / 5V"},{k:"GPIO", v:"34 programmables"},{k:"ADC", v:"12-bit, 18 canaux"},{k:"Protocoles", v:"SPI, I2C, UART, CAN"}]
+            },
+            { id: 'p5', name: "ESP32-CAM", cat: "cartes", price: 8500, img: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Vision IoT",
+              desc: "L'ESP32-CAM intègre un module caméra OV2640 2MP avec Wi-Fi. Parfait pour la surveillance vidéo et la reconnaissance faciale.",
+              specs: [{k:"Capteur image", v:"OV2640 2 MP"},{k:"Résolution max", v:"1600 x 1200 UXGA"},{k:"CPU", v:"ESP32 Dual 240 MHz"},{k:"Flash intégré", v:"4 MB"},{k:"Wi-Fi", v:"802.11 b/g/n"},{k:"Slot MicroSD", v:"Oui (jusqu'à 4 GB)"}]
+            },
+            { id: 'p6', name: "ESP-01 + Adaptateur", cat: "cartes", price: 2500, img: "https://images.unsplash.com/photo-1610464654941-8f5eb52ee6cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Module Wi-Fi" },
+            { id: 'p7', name: "Pack RFID", cat: "cartes", price: 3000, img: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Module Lecture" },
+            { id: 'p8', name: "Membrane Clavier 4x4", cat: "composants", price: 1500, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Interface" },
+            { id: 'p9', name: "Module Relais 1 Canal", cat: "cartes", price: 1000, img: "https://images.unsplash.com/photo-1622353086088-ff81432f8149?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Puissance 220V" },
+            { id: 'p10', name: "Module Relais 2 Canaux", cat: "cartes", price: 2000, img: "https://images.unsplash.com/photo-1622353086088-ff81432f8149?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Puissance 220V" },
+            { id: 'p11', name: "Module Relais 4 Canaux", cat: "cartes", price: 3500, img: "https://images.unsplash.com/photo-1622353086088-ff81432f8149?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Puissance 220V" },
+            { id: 'p12', name: "Module Relais 8 Canaux", cat: "cartes", price: 6000, img: "https://images.unsplash.com/photo-1622353086088-ff81432f8149?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Puissance 220V" },
+            
+            // Capteurs
+            { id: 'p13', name: "Capteur Ultrason HC-SR04", cat: "capteurs", price: 1500, img: "https://images.unsplash.com/photo-1593361468652-3298c9fcf607?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Distance" },
+            { id: 'p14', name: "Capteur Température DHT11", cat: "capteurs", price: 1000, img: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Environnement" },
+            { id: 'p15', name: "Module RTC (DS3231/DS1302)", cat: "capteurs", price: 1500, img: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Horloge Temps Réel" },
+            { id: 'p16', name: "Capteur de Son KY-037", cat: "capteurs", price: 1000, img: "https://images.unsplash.com/photo-1593361468652-3298c9fcf607?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Audio" },
+            { id: 'p17', name: "Capteur PIR (Présence)", cat: "capteurs", price: 1500, img: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Mouvement" },
+            { id: 'p18', name: "Water Sensor", cat: "capteurs", price: 1000, img: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Niveau d'eau" },
+
+            // Moteurs
+            { id: 'p19', name: "Servo-moteur SG90 (Bleu)", cat: "moteurs", price: 1500, img: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Actionneur" },
+            { id: 'p20', name: "Moteur Pas-à-pas", cat: "moteurs", price: 2000, img: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Rotation" },
+            { id: 'p21', name: "Contrôleur de Moteur (Driver)", cat: "moteurs", price: 2000, img: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Puissance Moteur" },
+
+            // Composants et Affichage
+            { id: 'p22', name: "Écran LCD + I2C", cat: "composants", price: 4000, img: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Affichage" },
+            { id: 'p23', name: "Matrice LED 8x8", cat: "composants", price: 2500, img: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Affichage" },
+            { id: 'p24', name: "Afficheur 7 segments", cat: "composants", price: 1000, img: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Affichage" },
+            { id: 'p25', name: "Joystick Analogique", cat: "composants", price: 1500, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Interface" },
+            { id: 'p26', name: "LED (Couleur : Vert, Jaune, Rouge, Bleu, RGB)", cat: "composants", price: 50, img: "https://images.unsplash.com/photo-1610464654941-8f5eb52ee6cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Diode", badge: "L'UNITÉ" },
+            { id: 'p27', name: "Diodes classiques & Zener", cat: "composants", price: 50, img: "https://images.unsplash.com/photo-1610464654941-8f5eb52ee6cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Semiconducteur", badge: "L'UNITÉ" },
+            { id: 'p28', name: "Résistances & Condensateurs", cat: "composants", price: 50, img: "https://images.unsplash.com/photo-1610464654941-8f5eb52ee6cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Composants Standard", badge: "L'UNITÉ" },
+            { id: 'p29', name: "Potentiomètre", cat: "composants", price: 500, img: "https://images.unsplash.com/photo-1610464654941-8f5eb52ee6cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Résistance Variable" },
+            { id: 'p30', name: "Boutons Poussoirs / Interrupteur 5V", cat: "composants", price: 200, img: "https://images.unsplash.com/photo-1610464654941-8f5eb52ee6cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Commutation" },
+            { id: 'p31', name: "Circuit Intégré NE555", cat: "composants", price: 500, img: "https://images.unsplash.com/photo-1610464654941-8f5eb52ee6cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Temporisateur" },
+            { id: 'p32', name: "Buzzer", cat: "composants", price: 350, img: "https://images.unsplash.com/photo-1610464654941-8f5eb52ee6cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Sonore" },
+
+            // Accessoires (Alimentation, Câblage, Outils)
+            { id: 'p33', name: "Protoboard (Grande)", cat: "accessoires", price: 1200, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Plaque d'Essai" },
+            { id: 'p34', name: "Protoboard (Petite)", cat: "accessoires", price: 800, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Plaque d'Essai" },
+            { id: 'p35', name: "Vero-board", cat: "accessoires", price: 1000, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Plaque à Souder" },
+            { id: 'p36', name: "Kit 40 Jumpers (M/M, M/F, F/F)", cat: "accessoires", price: 1500, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Câblage" },
+            { id: 'p37', name: "Module Alimentation Breadboard", cat: "accessoires", price: 800, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Alimentation" },
+            { id: 'p38', name: "Piles 9V / 3.7V", cat: "accessoires", price: 1000, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Alimentation" },
+            { id: 'p39', name: "Connecteur Jack / Pile", cat: "accessoires", price: 500, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Alimentation" },
+            { id: 'p40', name: "Transformateur", cat: "accessoires", price: 2500, img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Alimentation" },
+            { id: 'p41', name: "Multimètre Digital", cat: "accessoires", price: "Sur Devis", img: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Mesure" },
+            { id: 'p42', name: "Matériel Soudure (Fer + Étain)", cat: "accessoires", price: "Sur Devis", img: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Outillage" },
+            { id: 'p43', name: "Outils (Pinces, Tournevis)", cat: "accessoires", price: "Sur Devis", img: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Outillage" },
+            { id: 'p44', name: "Électricité Domestique (Lampes, Prises)", cat: "accessoires", price: "Sur Devis", img: "https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", tag: "Installation" }
+        ];
+
+        // --- COURSES DATA ---
+        const academyCourses = [
+            {
+                id: "ne555_init",
+                tag: "CIRCUITS", level: "Débutant", title: "Maîtriser le NE555 : 5 Projets Pratiques",
+                duration: "2 Heures", modules: 5, price: "GRATUIT", levelClass: "bg-gray-500", bgClass: "bg-gray-800",
+                link: "https://wa.me/+2290154116425?text=Bonjour,%20je%20veux%20accéder%20au%20cours%20gratuit%20NE555",
+                summary: ["Comprendre le mode Astable et Monostable", "Créer un Blink LED réglable", "Fabriquer une veilleuse automatique", "Concevoir une mini sirène d'alarme", "Simuler des feux tricolores"],
+                curriculum: [
+                    { title: "Blink LED avec NE555", desc: "Clignotement réglable par potentiomètre" },
+                    { title: "Veilleuse automatique", desc: "LED qui s'allume avec une LDR quand il fait sombre" },
+                    { title: "Mini sirène d'alarme", desc: "Générée par le NE555 en astable avec un buzzer" },
+                    { title: "Feux tricolores simples", desc: "Séquence avec NE555" },
+                    { title: "Radar post-péage", desc: "NE555 + capteur IR pour détecter un passage" }
+                ]
+            },
+            {
+                id: "arduino_bases",
+                tag: "ARDUINO", level: "Débutant", title: "Arduino & Capteurs : Les Essentiels",
+                duration: "4 Heures", modules: 6, price: "5 000 FCFA", levelClass: "bg-green-500", bgClass: "bg-gradient-to-r from-green-800 to-green-600",
+                link: "https://wa.me/+2290154116425?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20la%20formation%20Arduino%20(5000%20FCFA)",
+                summary: ["Programmer en C/C++ pour Arduino", "Utiliser un capteur PIR", "Afficher sur écran LCD", "Créer un système de sécurité"],
+                curriculum: [
+                    { title: "Blink LED Chenillard", desc: "Séquence de LED qui défile" },
+                    { title: "Détecteur de présence PIR", desc: "Allume une lampe quand quelqu'un passe" },
+                    { title: "Mini station météo", desc: "Température (DHT11) affichée sur I2C LCD" },
+                    { title: "Système de sécurité RFID", desc: "Contrôle d'accès avec badge" },
+                    { title: "Mini radar de parking", desc: "Capteur ultrason HC-SR04 + LED progressives" }
+                ]
+            },
+            {
+                id: "robot_suiveur",
+                tag: "ROBOTIQUE", level: "Intermédiaire", title: "Créer un Robot Suiveur de Ligne",
+                duration: "5 Heures", modules: 5, price: "7 500 FCFA", levelClass: "bg-yellow-500", bgClass: "bg-anthracite",
+                link: "https://wa.me/+2290154116425?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20la%20formation%20Robot%20(7500%20FCFA)",
+                summary: ["Assembler un châssis mécanique", "Piloter des moteurs DC", "Gérer des capteurs Infrarouges", "Algorithme de correction de trajectoire"],
+                curriculum: [
+                    { title: "Le Châssis et les Moteurs", desc: "Montage mécanique et test du driver moteur" },
+                    { title: "Les Capteurs IR", desc: "Étalonnage pour ligne noire sur fond blanc" },
+                    { title: "L'Algorithme Suiveur", desc: "Logique conditionnelle de base" },
+                    { title: "Optimisation de la vitesse", desc: "Utilisation du PWM pour fluidifier le mouvement" }
+                ]
+            },
+            {
+                id: "iot_esp32",
+                tag: "DOMOTIQUE", level: "Avancé", title: "Smart Home avec ESP32 & IoT",
+                duration: "6 Heures", modules: 6, price: "10 000 FCFA", levelClass: "bg-maxRed", bgClass: "bg-gradient-to-r from-maxDarkRed to-maxRed",
+                link: "https://wa.me/+2290154116425?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20la%20formation%20Domotique%20(10000%20FCFA)",
+                summary: ["Connexion Wi-Fi avec ESP32", "Créer un Serveur Web", "Contrôler des Relais 220V", "Système d'arrosage automatique connecté"],
+                curriculum: [
+                    { title: "Découverte de l'ESP32", desc: "Configuration Wi-Fi" },
+                    { title: "Thermostat automatique", desc: "Relais + Capteur Température" },
+                    { title: "Arrosage connecté", desc: "Capteur d'humidité du sol + mini pompe" },
+                    { title: "Alarme connectée", desc: "Capteur magnétique + Notifications Telegram" }
+                ]
+            },
+            {
+                id: "simul_wokwi",
+                tag: "SIMULATION", level: "Pour tous", title: "Apprendre sans matériel (Wokwi & Proteus)",
+                duration: "2 Heures", modules: 4, price: "GRATUIT", levelClass: "bg-gray-500", bgClass: "bg-blue-800",
+                link: "https://wa.me/+2290154116425?text=Bonjour,%20je%20veux%20accéder%20au%20cours%20gratuit%20Simulation",
+                summary: ["Utiliser Tinkercad et Wokwi", "Simuler Arduino et capteurs", "Tester son code en ligne", "Créer un projet domotique virtuel"],
+                curriculum: [
+                    { title: "Feux tricolores sur Tinkercad", desc: "Pratique des circuits logiques" },
+                    { title: "Projet LCD sur Wokwi", desc: "Afficher du texte sans câblage réel" },
+                    { title: "Simulation NE555 Proteus", desc: "Comprendre les signaux carrés" },
+                    { title: "Drone miniature simulé", desc: "Bases physiques sur Tinkercad" }
+                ]
+            },
+            {
+                id: "robot_spider",
+                tag: "MÉCANIQUE", level: "Expert", title: "Construire un Robot Araignée (Quadrupède)",
+                duration: "8 Heures", modules: 5, price: "15 000 FCFA", levelClass: "bg-purple-600", bgClass: "bg-gradient-to-br from-gray-900 to-gray-700",
+                link: "https://wa.me/+2290154116425?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20la%20formation%20Robot%20Araignée%20(15000%20FCFA)",
+                summary: ["Cinématique inverse de base", "Contrôler 8 à 12 servo-moteurs", "Synchronisation des mouvements", "Pilotage Bluetooth"],
+                curriculum: [
+                    { title: "Mécanique des pattes", desc: "Assemblage et angles de rotation" },
+                    { title: "Calibration des Servos", desc: "Trouver le centre de gravité" },
+                    { title: "Création d'une marche (Gait)", desc: "Séquence d'activation synchronisée" },
+                    { title: "Robot contrôlé par Bluetooth", desc: "Ajout d'une manette sur smartphone" }
+                ]
+            }
+        ];
+
+        function openProductModal(id) {
+            const product = shopItems.find(p => p.id === id);
+            if(!product) return;
+
+            document.getElementById('modalProductImg').src = product.img;
+            document.getElementById('modalProductImg').alt = product.name;
+            document.getElementById('modalProductName').innerText = product.name;
+            document.getElementById('modalProductTag').innerText = product.tag;
+            document.getElementById('modalProductPrice').innerText = product.price === 'Sur Devis' ? product.price : product.price + ' FCFA';
+            
+            // Description
+            const descEl = document.getElementById('modalProductDescription');
+            if(descEl) descEl.innerText = product.desc || 'Composant électronique de haute qualité pour vos projets d\'ingénierie, robotique ou domotique.';
+            
+            // Specs Table
+            const specsEl = document.getElementById('modalProductSpecs');
+            if(specsEl) {
+                if(product.specs && product.specs.length > 0) {
+                    specsEl.innerHTML = product.specs.map((s, i) => `
+                        <tr class="${i % 2 === 0 ? 'bg-gray-50/60' : 'bg-white'}">
+                            <td class="py-2.5 px-3 font-semibold text-gray-600 w-1/2">${s.k}</td>
+                            <td class="py-2.5 px-3 text-gray-500">${s.v}</td>
+                        </tr>`).join('');
+                } else {
+                    specsEl.innerHTML = `<tr><td colspan="2" class="py-3 px-3 text-gray-400 text-xs">Fiche technique non disponible. Contactez-nous pour les détails.</td></tr>`;
+                }
+            }
+            
+            const addBtn = document.getElementById('modalProductAddBtn');
+            addBtn.onclick = function() {
+                addToCart(product.id);
+                closeModals();
+            };
+
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // --- RENDERING LOGIC ---
+        function renderShop(itemsToRender = shopItems) {
+            const grid = document.getElementById('products-grid');
+            if(itemsToRender.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-gray-400">Aucun composant ne correspond à votre recherche.</div>`;
+                return;
+            }
+
+            grid.innerHTML = itemsToRender.map(p => `
+                <div class="product-card product-[p.cat] bg-white rounded-2xl overflow-hidden relative" style="opacity:1; transform:scale(1);">
+                    ${p.badge ? `<div class="absolute top-3 left-3 bg-red-100 text-maxRed text-xs font-bold px-2 py-1 rounded z-10">${p.badge}</div>` : ''}
+                    
+                    <!-- Clickable Image Area -->
+                    <div class="relative h-48 bg-gray-50 p-6 flex items-center justify-center cursor-pointer group" onclick="openProductModal('${p.id}')">
+                        <img src="${p.img}" alt="${p.name}" class="h-full object-cover rounded-xl transform transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white shadow flex items-center justify-center text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fas fa-expand-alt text-xs"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Details & Always Visible Button Area -->
+                    <div class="p-5 flex flex-col h-[140px]">
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 line-clamp-1">${p.tag}</div>
+                        <h3 class="font-bold text-anthracite mb-auto line-clamp-2 cursor-pointer hover:text-maxRed transition-colors" onclick="openProductModal('${p.id}')">${p.name}</h3>
+                        
+                        <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                            <span class="text-lg font-extrabold text-maxRed">${p.price === 'Sur Devis' ? p.price : p.price + ' FCFA'}</span>
+                            <button onclick="addToCart('${p.id}')" class="w-10 h-10 rounded-full bg-lightGray text-anthracite hover:bg-maxRed hover:text-white transition-colors flex items-center justify-center shadow-sm">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Search logic
+        function searchShop() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = shopItems.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.tag.toLowerCase().includes(query)
+            );
+            
+            // Reset active filter button visually
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('bg-anthracite', 'text-white');
+                b.classList.add('bg-white', 'text-gray-600');
+            });
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('bg-anthracite', 'text-white');
+            document.querySelector('.filter-btn[data-filter="all"]').classList.remove('bg-white', 'text-gray-600');
+
+            renderShop(filtered);
+        }
+
+        function renderCourses() {
+            const grid = document.getElementById('courses-grid');
+            grid.innerHTML = academyCourses.map(c => `
+                <div class="bg-white rounded-2xl overflow-hidden shadow-premium card-hover border border-gray-100 flex flex-col h-full">
+                    <div class="h-48 ${c.bgClass} relative flex flex-col justify-between p-4">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold font-display tracking-wider">${c.tag}</span>
+                            <span class="${c.levelClass} text-white px-3 py-1 rounded shadow-sm text-sm font-bold">${c.level}</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-white leading-tight mt-auto">${c.title}</h3>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex items-center gap-4 text-sm text-gray-400 font-medium mb-4">
+                            <div class="flex items-center gap-1"><i class="far fa-clock"></i> ${c.duration}</div>
+                            <div class="flex items-center gap-1"><i class="far fa-file-video"></i> ${c.modules} Modules</div>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6 flex-1">${c.summary[0]} et plus...</p>
+                        <div class="border-t border-gray-100 pt-4 mt-auto">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-extrabold ${c.price === 'GRATUIT' ? 'text-green-500' : 'text-maxRed'}">${c.price}</span>
+                            </div>
+                            <button onclick="openCourseModal('${c.id}')" class="w-full ${c.price === 'GRATUIT' ? 'bg-anthracite text-white hover:bg-gray-800' : 'bg-lightGray text-anthracite hover:bg-maxRed hover:text-white'} font-bold py-3 rounded-xl transition-all flex justify-center items-center gap-2">
+                                Voir le programme complet <i class="fas fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== RENDER PROJETS =====
+        function renderProjects(projects) {
+            const grid = document.getElementById('projects-grid');
+            if (!grid || !projects.length) return;
+            grid.innerHTML = projects.map(p => `
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer border border-white/5 hover:border-maxRed/40 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-10"></div>
+                    <img src="${p.img || ''}" alt="${p.title || ''}" class="w-full h-72 object-cover transform group-hover:scale-105 transition-transform duration-700" onerror="this.parentElement.style.background='#1a1d20'">
+                    <div class="absolute top-4 left-4 z-20">
+                        <span class="${p.badgeColor || 'bg-maxRed'} text-white text-xs font-bold px-3 py-1 rounded-full">${p.category || ''}</span>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+                        <h3 class="text-xl font-display font-bold text-white mb-1">${p.title || ''}</h3>
+                        <p class="text-gray-400 text-sm mb-4 max-h-0 group-hover:max-h-20 overflow-hidden transition-all duration-500">${p.desc || ''}</p>
+                        <div class="flex items-center gap-3 text-xs text-gray-400">
+                            <span class="flex items-center gap-1"><i class="fas fa-microchip"></i> ${(p.tech || '').split(',')[0]}</span>
+                            <span class="flex items-center gap-1"><i class="fas fa-signal"></i> ${p.level || ''}</span>
+                        </div>
+                    </div>
+                </div>`).join('');
+        }
+
+        // Initialize dynamic content
+        document.addEventListener('DOMContentLoaded', () => {
+            renderShop();
+            renderCourses();
+            renderProjects(defaultProjects);
+            updateCartUI();
+            loadDataFromSheets();
+        });
+        
+        // Modal functions modified to support cart sliding
+        function openCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                modal.querySelector('.modal-content-anim').classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        // Open Course Modal Builder
+        function openCourseModal(courseId) {
+            const data = academyCourses.find(c => c.id === courseId);
+            if(!data) return;
+
+            document.getElementById('modalCourseTitle').innerText = data.title;
+            document.getElementById('modalCoursePrice').innerText = data.price;
+            document.getElementById('modalBuyLink').href = data.link;
+
+            // Build Summary
+            const summaryHtml = data.summary.map(s => `<li>${s}</li>`).join('');
+            document.getElementById('modalCourseSummary').innerHTML = summaryHtml;
+
+            // Build Curriculum
+            const curriculumHtml = data.curriculum.map((mod, idx) => `
+                <div class="p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-red-50 text-maxRed flex items-center justify-center font-bold font-display shrink-0 mt-0.5">${idx + 1}</div>
+                        <div>
+                            <h5 class="font-bold text-anthracite mb-1">${mod.title}</h5>
+                            <p class="text-xs text-gray-500">${mod.desc}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('modalCourseCurriculum').innerHTML = curriculumHtml;
+
+            // Show Modal
+            const modal = document.getElementById('courseModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // prevent bg scroll
+        }
+
+        // Close all Modals
+        function closeModals() {
+            // Course Modal
+            document.getElementById('courseModal').classList.add('hidden');
+            
+            // Product Modal
+            document.getElementById('productModal').classList.add('hidden');
+            
+            // Cart Modal (with slide anim)
+            const cartPanel = document.getElementById('cartModal').querySelector('.modal-content-anim');
+            cartPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                document.getElementById('cartModal').classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+            
+            document.body.style.overflow = '';
+        }
+
+        // FAQ Toggling
+        function toggleFaq(btn) {
+            const body = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            
+            // Toggle active class
+            if(body.classList.contains('active')) {
+                body.classList.remove('active');
+                icon.classList.remove('faq-icon-rotate');
+                setTimeout(() => body.classList.add('hidden'), 300);
+            } else {
+                body.classList.remove('hidden');
+                setTimeout(() => {
+                    body.classList.add('active');
+                    icon.classList.add('faq-icon-rotate');
+                }, 10);
+            }
+        }
+
+        // Contact Form Logic (WhatsApp)
+        function sendContactWhatsApp() {
+            const name = document.getElementById('contactName').value;
+            const subjectSelect = document.getElementById('contactSubject');
+            const subjectText = subjectSelect.options[subjectSelect.selectedIndex].text;
+            const message = document.getElementById('contactMessage').value;
+
+            if(!name || !message) {
+                alert("Veuillez remplir votre nom et votre message.");
+                return;
+            }
+            const wa = `Bonjour Max_Adis !\n\nNom: ${name}\nMessage: ${message}`;
+            window.open(`https://wa.me/+2290154116425?text=${encodeURIComponent(wa)}`, '_blank');
+        }
+
+        // ===== WEB3FORMS CONTACT =====
+        async function submitContact(e) {
+            e.preventDefault();
+            const btn = document.getElementById('contactBtn');
+            const btnTxt = document.getElementById('contactBtnTxt');
+            const errDiv = document.getElementById('contactErr');
+            const email = document.getElementById('contactEmailField').value;
+            btn.disabled = true;
+            btnTxt.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Envoi...';
+            errDiv.classList.add('hidden');
+            const form = document.getElementById('contactForm');
+            const json = Object.fromEntries(new FormData(form).entries());
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json','Accept':'application/json'},
+                    body: JSON.stringify(json)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    // Sauvegarder en local pour l'admin
+                    const msgs = JSON.parse(localStorage.getItem('maxadis_messages') || '[]');
+                    msgs.unshift({id:Date.now(),name:json.name,email:json.email,subject:json.subject_choice,message:json.message,date:new Date().toISOString(),read:false});
+                    localStorage.setItem('maxadis_messages', JSON.stringify(msgs));
+                    document.getElementById('contactForm').classList.add('hidden');
+                    document.getElementById('successEmail').textContent = email;
+                    document.getElementById('contactSuccess').classList.remove('hidden');
+                    document.getElementById('contactSuccess').style.display = 'flex';
+                } else throw new Error(result.message || 'Erreur');
+            } catch(err) {
+                errDiv.textContent = 'Erreur : ' + (err.message || 'Réessayez.');
+                errDiv.classList.remove('hidden');
+                btn.disabled = false;
+                btnTxt.textContent = 'Envoyer le message';
+            }
+        }
+        function resetContact() {
+            document.getElementById('contactForm').reset();
+            document.getElementById('contactForm').classList.remove('hidden');
+            document.getElementById('contactSuccess').style.display = 'none';
+            document.getElementById('contactSuccess').classList.add('hidden');
+            document.getElementById('contactBtn').disabled = false;
+            document.getElementById('contactBtnTxt').textContent = 'Envoyer le message';
+        }
+
+        // ===== GOOGLE SHEETS : charger produits et formations =====
+        async function loadDataFromSheets() {
+            try {
+                const [pRes, cRes] = await Promise.all([
+                    fetch(GSHEET_API + '?action=getProducts'),
+                    fetch(GSHEET_API + '?action=getCourses')
+                ]);
+                const pd = await pRes.json();
+                const cd = await cRes.json();
+                if (pd.success && pd.data.length > 0) {
+                    shopItems.length = 0;
+                    pd.data.forEach(p => shopItems.push({
+                        ...p,
+                        price: isNaN(p.price) ? p.price : Number(p.price),
+                        specs: p.specs ? JSON.parse(p.specs || '[]') : []
+                    }));
+                    renderShop();
+                }
+                if (cd.success && cd.data.length > 0) {
+                    academyCourses.length = 0;
+                    cd.data.forEach(c => academyCourses.push({
+                        ...c,
+                        summary: typeof c.summary === 'string' ? c.summary.split(',').map(s => s.trim()) : (c.summary || []),
+                        curriculum: []
+                    }));
+                    renderCourses();
+                }
+            } catch(e) { /* Google Sheets indisponible, données locales utilisées */ }
+        }
+
+        // ===== FORMULAIRE COMMANDE =====
+        function openOrderModal() {
+            if (cart.length === 0) { alert('Votre panier est vide !'); return; }
+            let total = 0; let hasDevis = false;
+            const recap = cart.map(item => {
+                const it = typeof item.price === 'number' ? item.price * item.qty : 0;
+                if (typeof item.price === 'number') total += it; else hasDevis = true;
+                return `<div class="flex justify-between items-center py-1.5 border-b border-gray-100 last:border-0 text-sm">
+                    <span class="text-gray-700 font-medium">${item.qty}x ${item.name}</span>
+                    <span class="font-bold text-red-600">${typeof item.price === 'number' ? it.toLocaleString()+' FCFA' : 'Sur Devis'}</span>
+                </div>`;
+            }).join('');
+            document.getElementById('orderCartRecap').innerHTML = recap;
+            document.getElementById('orderTotalDisplay').textContent = total > 0 ? total.toLocaleString()+' FCFA'+(hasDevis?' + Devis':'') : 'Sur Devis';
+            document.getElementById('orderError').classList.add('hidden');
+            const modal = document.getElementById('orderModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function toggleDelivery() {
+            const mode = document.querySelector('input[name="oMode"]:checked')?.value;
+            const fields = document.getElementById('delivFields');
+            if (mode === 'Livraison') fields.classList.remove('hidden');
+            else fields.classList.add('hidden');
+        }
+        async function submitOrder() {
+            const name = document.getElementById('oName').value.trim();
+            const phone = document.getElementById('oPhone').value.trim();
+            const mode = document.querySelector('input[name="oMode"]:checked')?.value;
+            const err = document.getElementById('orderError');
+            if (!name || !phone) { err.textContent = 'Nom et téléphone requis.'; err.classList.remove('hidden'); return; }
+            if (!mode) { err.textContent = 'Choisissez un mode de réception.'; err.classList.remove('hidden'); return; }
+            const ville = mode === 'Livraison' ? document.getElementById('oVille').value : 'Porto-Novo';
+            const addr = mode === 'Livraison' ? document.getElementById('oAddr').value : '';
+            const note = document.getElementById('oNote').value;
+            let prodText = ''; let total = 0; let hasDevis = false;
+            cart.forEach(item => {
+                prodText += `▪ ${item.qty}x ${item.name}`;
+                if (typeof item.price === 'number') { prodText += ` - ${(item.price*item.qty).toLocaleString()} FCFA\n`; total += item.price*item.qty; }
+                else { prodText += ` - Sur Devis\n`; hasDevis = true; }
+            });
+            const totalStr = total > 0 ? total.toLocaleString()+' FCFA'+(hasDevis?' + Devis':'') : 'Sur Devis';
+            // Sauvegarder dans Google Sheets
+            try {
+                await fetch(GSHEET_API + '?action=addCommande', {
+                    method: 'POST',
+                    body: JSON.stringify({id:'CMD'+Date.now(),date:new Date().toISOString(),nom:name,telephone:phone,ville,mode,adresse:addr,produits:prodText,total:totalStr,statut:'Reçue',note})
+                });
+            } catch(e) {}
+            // Message WhatsApp formaté
+            const wa = `🛒 [COMMANDE] Max_Adis\n${'━'.repeat(25)}\n👤 ${name}\n📱 ${phone}\n🚚 ${mode}${addr?'\n📍 '+ville+' — '+addr:''}\n${'━'.repeat(25)}\n${prodText}\n💰 TOTAL : ${totalStr}\n${'━'.repeat(25)}${note?'\n📝 Note : '+note:''}`;
+            window.open(`https://wa.me/+2290154116425?text=${encodeURIComponent(wa)}`, '_blank');
+            closeOrderModal();
+        }
+
+        // ===== PWA SERVICE WORKER =====
+        let newSW = null;
+        function showUpdateBanner() { document.getElementById('updateBanner').style.transform = 'translateY(0)'; }
+        function applyUpdate() { if(newSW) newSW.postMessage({type:'SKIP_WAITING'}); window.location.reload(); }
+        function dismissUpdate() { document.getElementById('updateBanner').style.transform = 'translateY(-100%)'; }
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const reg = await navigator.serviceWorker.register('/sw.js');
+                    reg.addEventListener('updatefound', () => {
+                        newSW = reg.installing;
+                        newSW.addEventListener('statechange', () => {
+                            if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                                showUpdateBanner();
+                                sessionStorage.setItem('pendingUpdate','1');
+                            }
+                        });
+                    });
+                } catch(e) {}
+            });
+            if (sessionStorage.getItem('pendingUpdate')) {
+                sessionStorage.removeItem('pendingUpdate');
+                navigator.serviceWorker.getRegistration().then(reg => {
+                    if (reg?.waiting) { reg.waiting.postMessage({type:'SKIP_WAITING'}); window.location.reload(); }
+                });
+            }
+        }
+
+        // ===== INIT =====
+        document.addEventListener('DOMContentLoaded', () => {
+            renderShop();
+            renderCourses();
+            updateCartUI();
+            loadDataFromSheets(); // Charger depuis Google Sheets en arrière-plan
+        });
+
+    </script>
+
+    <!-- ORDER MODAL -->
+    <div id="orderModal" style="display:none" class="fixed inset-0 z-[110] flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeOrderModal()"></div>
+        <div class="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col z-10">
+            <div class="flex items-center justify-between p-6 border-b border-gray-100">
+                <h3 class="text-xl font-display font-bold text-anthracite">Finaliser la commande</h3>
+                <button onclick="closeOrderModal()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:text-red-500"><i class="fas fa-times text-sm"></i></button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6 space-y-4">
+                <div id="orderCartRecap" class="bg-gray-50 rounded-xl p-4"></div>
+                <div><label class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Nom complet *</label><input id="oName" type="text" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-400" placeholder="Ex: Jean Dupont"></div>
+                <div><label class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Téléphone / WhatsApp *</label><input id="oPhone" type="tel" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-400" placeholder="+229 01 XX XX XX"></div>
+                <div>
+                    <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Mode de réception *</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-red-300 transition-colors">
+                            <input type="radio" name="oMode" value="Livraison" onchange="toggleDelivery()">
+                            <div><div class="font-semibold text-sm text-anthracite">Livraison</div><div class="text-xs text-gray-400">À domicile</div></div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-red-300 transition-colors">
+                            <input type="radio" name="oMode" value="Retrait boutique" onchange="toggleDelivery()">
+                            <div><div class="font-semibold text-sm text-anthracite">Retrait</div><div class="text-xs text-gray-400">Porto-Novo</div></div>
+                        </label>
+                    </div>
+                </div>
+                <div id="delivFields" class="hidden space-y-3">
+                    <div><label class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Ville</label>
+                        <select id="oVille" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-400">
+                            <option>Porto-Novo</option><option>Cotonou</option><option>Abomey-Calavi</option><option>Parakou</option><option>Autre</option>
+                        </select>
+                    </div>
+                    <div><label class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Quartier / Adresse</label><input id="oAddr" type="text" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-400" placeholder="Ex: Akpakpa, carrefour X"></div>
+                </div>
+                <div><label class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Note (optionnel)</label><textarea id="oNote" rows="2" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-400 resize-none" placeholder="Précisions..."></textarea></div>
+                <p id="orderError" class="hidden text-red-500 text-xs font-medium"></p>
+            </div>
+            <div class="p-6 bg-gray-50 border-t border-gray-100">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-gray-500 font-medium text-sm">Total estimé</span>
+                    <span id="orderTotalDisplay" class="text-2xl font-extrabold text-red-600"></span>
+                </div>
+                <button onclick="submitOrder()" class="w-full bg-[#25D366] hover:bg-[#1EB558] text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-3">
+                    <i class="fab fa-whatsapp text-xl"></i> Commander via WhatsApp
+                </button>
+                <p class="text-xs text-center text-gray-400 mt-2">Vous serez redirigé vers WhatsApp pour confirmer</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPDATE BANNER -->
+    <div id="updateBanner" class="fixed top-0 left-0 right-0 z-[200]" style="background:#1A1D20;border-bottom:2px solid #D90429;transform:translateY(-100%);transition:transform 0.5s">
+        <div class="container mx-auto px-6 py-3 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-maxRed flex items-center justify-center text-white text-sm flex-shrink-0"><i class="fas fa-sync-alt"></i></div>
+                <p class="text-white text-sm font-medium">Nouvelle version disponible !</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="applyUpdate()" class="bg-maxRed text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-red-700 transition-colors">Mettre à jour</button>
+                <button onclick="dismissUpdate()" class="text-gray-400 hover:text-white text-xs px-3">Plus tard</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
