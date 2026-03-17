@@ -392,10 +392,26 @@ function changePwd() {
 
 // FIREBASE CHECK
 function checkFirebase() {
-  if(!db) { document.getElementById('fbDot').className = 'fb-dot fb-err'; document.getElementById('fbTxt').textContent = 'Firebase indisponible'; return; }
+  if(!db) {
+    document.getElementById('fbDot').className = 'fb-dot fb-err';
+    document.getElementById('fbTxt').textContent = 'Firebase indisponible';
+    return;
+  }
+  // Test write
   db.collection('_ping').doc('test').set({t: Date.now()})
-    .then(function() { document.getElementById('fbDot').className = 'fb-dot fb-ok'; document.getElementById('fbTxt').textContent = 'Firebase connecté ✓'; })
-    .catch(function(e) { document.getElementById('fbDot').className = 'fb-dot fb-err'; document.getElementById('fbTxt').textContent = 'Erreur: ' + e.code; });
+    .then(function() {
+      document.getElementById('fbDot').className = 'fb-dot fb-ok';
+      document.getElementById('fbTxt').textContent = 'Firebase connecté ✓';
+      // Auto-charger les produits si on est sur la page produits
+      if(document.getElementById('sec-products').classList.contains('active')) {
+        loadProducts();
+      }
+    })
+    .catch(function(e) {
+      document.getElementById('fbDot').className = 'fb-dot fb-err';
+      document.getElementById('fbTxt').textContent = 'Règles Firebase: ' + e.code;
+      toast('Configure les règles Firebase: allow read,write: if true', 'err');
+    });
 }
 
 // NAVIGATION
@@ -433,14 +449,26 @@ function loadProducts() {
   document.getElementById('prodsLoad').classList.remove('hidden');
   document.getElementById('prodsBody').innerHTML = '';
   document.getElementById('prodsEmpty').classList.add('hidden');
-  db.collection('products').orderBy('name').get()
+  // Timeout de sécurité - si Firebase ne répond pas en 8s
+  var timeout = setTimeout(function() {
+    document.getElementById('prodsLoad').classList.add('hidden');
+    document.getElementById('prodsEmpty').classList.remove('hidden');
+    toast('Firebase timeout - vérifie les règles Firestore', 'err');
+  }, 8000);
+  db.collection('products').get()
     .then(function(snap) {
+      clearTimeout(timeout);
       document.getElementById('prodsLoad').classList.add('hidden');
       allProds = snap.docs.map(function(d) { return Object.assign({}, d.data(), {id: d.id}); });
       document.getElementById('np').textContent = allProds.length || '';
       renderProdsTable();
     })
-    .catch(function(e) { document.getElementById('prodsLoad').classList.add('hidden'); toast('Erreur: ' + e.message, 'err'); });
+    .catch(function(e) {
+      document.getElementById('prodsLoad').classList.add('hidden');
+      document.getElementById('prodsEmpty').classList.remove('hidden');
+      toast('Erreur Firebase: ' + e.message, 'err');
+      console.error('Firebase error:', e);
+    });
 }
 
 function renderProdsTable() {
@@ -657,7 +685,7 @@ function saveCourse() {
 function loadCommandes() {
   if(!db) { toast('Firebase non connecté', 'err'); return; }
   document.getElementById('cmdLoad').classList.remove('hidden');
-  db.collection('commandes').orderBy('date', 'desc').limit(50).get()
+  db.collection('commandes').limit(50).get()
     .then(function(snap) {
       document.getElementById('cmdLoad').classList.add('hidden');
       allCmds = snap.docs.map(function(d) { return Object.assign({}, d.data(), {id: d.id}); });
