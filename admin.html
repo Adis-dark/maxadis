@@ -465,8 +465,9 @@ function goTo(name) {
   var sec = document.getElementById('sec-' + name);
   if (sec) sec.classList.add('active');
   document.querySelectorAll('.ni').forEach(function(n) { n.classList.remove('active'); });
-  var navBtn = document.querySelector('.ni[data-section="' + name + '"]');
-  if (navBtn) navBtn.classList.add('active');
+  document.querySelectorAll('.ni').forEach(function(n) {
+    if (n.dataset.section === name) n.classList.add('active');
+  });
   if (name === 'products') loadProducts();
   else if (name === 'courses') loadCourses();
   else if (name === 'commandes') loadCommandes();
@@ -947,6 +948,15 @@ function copyLogo() {
 // IMPORT DEFAULTS
 function importDefaults() {
   if (!db) { toast('Firebase non connecte', 'err'); return; }
+  // Vérifier d'abord si des produits existent déjà
+  db.collection('products').limit(1).get().then(function(snap) {
+    if (snap.size > 0) {
+      if (!confirm('Des produits existent deja dans Firebase. Importer quand meme (risque de doublons) ?')) return;
+    }
+    doImport();
+  });
+}
+function doImport() {
   toast('Import en cours...');
   var defaults = [
     {name:'Arduino Uno R3',cat:'cartes',price:'4500',tag:'Microcontroleur',status:'stock',badge:'',desc:'La carte Arduino Uno R3, reference pour debuter en electronique.',images:[],img:'',specs:[{k:'Microcontroleur',v:'ATmega328P'},{k:'Tension',v:'5V'},{k:'Frequence',v:'16 MHz'}]},
