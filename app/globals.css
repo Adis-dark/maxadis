@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 9% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 9% 12%;
+    --primary: 354 97% 43%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 12%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 354 97% 43%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 354 97% 43%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* Glassmorphism Navbar */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Navigation Link Styles */
+.nav-link {
+  @apply relative font-medium text-sm text-anthracite transition-colors duration-200;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute w-0 h-0.5 bottom-[-4px] left-0 bg-max-red transition-all duration-200;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  @apply text-max-red;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  @apply w-full;
+}
+
+/* Carousel Wrappers */
+.c-wrap {
+  @apply overflow-hidden relative;
+}
+
+.c-wrap::before,
+.c-wrap::after {
+  content: '';
+  @apply absolute top-0 bottom-0 w-20 z-[2] pointer-events-none;
+}
+
+.c-dark::before {
+  background: linear-gradient(to right, #1A1D20, transparent);
+  @apply left-0;
+}
+
+.c-dark::after {
+  background: linear-gradient(to left, #1A1D20, transparent);
+  @apply right-0;
+}
+
+.c-light::before {
+  background: linear-gradient(to right, #F8F9FA, transparent);
+  @apply left-0;
+}
+
+.c-light::after {
+  background: linear-gradient(to left, #F8F9FA, transparent);
+  @apply right-0;
+}
+
+.c-white::before {
+  background: linear-gradient(to right, #fff, transparent);
+  @apply left-0;
+}
+
+.c-white::after {
+  background: linear-gradient(to left, #fff, transparent);
+  @apply right-0;
+}
+
+.c-track {
+  @apply flex w-max py-3;
+}
+
+.c-track:hover {
+  animation-play-state: paused !important;
+}
+
+/* Product Card Hover */
+.product-card {
+  @apply border-2 border-transparent transition-all duration-300;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.product-card:hover {
+  @apply border-max-red;
+  box-shadow: 0 8px 24px rgba(217, 4, 41, 0.12) !important;
+  transform: translateY(-3px);
+}
+
+/* FAQ Animation */
+.faq-body {
+  max-height: 0;
+  @apply overflow-hidden opacity-0 transition-all duration-300;
+}
+
+.faq-body.open {
+  max-height: 300px;
+  @apply opacity-100;
+}
+
+/* Project Card */
+.proj-card {
+  @apply relative rounded-2xl overflow-hidden min-h-[260px];
+}
+
+.proj-card .ov {
+  @apply absolute inset-0 z-[1];
+  background: linear-gradient(to top, rgba(26, 29, 32, 0.95), rgba(26, 29, 32, 0.4) 60%, transparent);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
