@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS products (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
   slug TEXT UNIQUE NOT NULL,
-  category TEXT NOT NULL CHECK (category IN ('cartes', 'capteurs', 'moteurs', 'composants', 'kits', 'outils')),
+  category TEXT NOT NULL,
   price INTEGER NOT NULL,
   tag TEXT,
-  status TEXT DEFAULT 'stock' CHECK (status IN ('stock', 'rupture', 'precommande')),
+  status TEXT DEFAULT 'stock',
   badge TEXT,
   description TEXT,
   images TEXT[],
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS courses (
   slug TEXT UNIQUE NOT NULL,
   tag TEXT,
   price TEXT,
-  level TEXT DEFAULT 'Debutant' CHECK (level IN ('Debutant', 'Intermediaire', 'Avance')),
+  level TEXT DEFAULT 'Debutant',
   duration TEXT,
   modules TEXT,
   summary TEXT,
@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS orders (
   nom TEXT NOT NULL,
   telephone TEXT NOT NULL,
   ville TEXT,
-  mode TEXT CHECK (mode IN ('Livraison', 'Retrait')),
+  mode TEXT,
   produits TEXT NOT NULL,
   total TEXT NOT NULL,
-  statut TEXT DEFAULT 'Recue' CHECK (statut IN ('Recue', 'En preparation', 'En livraison', 'Livree', 'Annulee')),
+  statut TEXT DEFAULT 'Recue',
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -65,26 +65,26 @@ ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
 
 -- Products policies: public read, authenticated write
 CREATE POLICY "products_select_all" ON products FOR SELECT USING (true);
-CREATE POLICY "products_insert_auth" ON products FOR INSERT WITH CHECK (auth.role() = 'authenticated');
-CREATE POLICY "products_update_auth" ON products FOR UPDATE USING (auth.role() = 'authenticated');
-CREATE POLICY "products_delete_auth" ON products FOR DELETE USING (auth.role() = 'authenticated');
+CREATE POLICY "products_insert_auth" ON products FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+CREATE POLICY "products_update_auth" ON products FOR UPDATE USING (auth.uid() IS NOT NULL);
+CREATE POLICY "products_delete_auth" ON products FOR DELETE USING (auth.uid() IS NOT NULL);
 
 -- Courses policies: public read, authenticated write
 CREATE POLICY "courses_select_all" ON courses FOR SELECT USING (true);
-CREATE POLICY "courses_insert_auth" ON courses FOR INSERT WITH CHECK (auth.role() = 'authenticated');
-CREATE POLICY "courses_update_auth" ON courses FOR UPDATE USING (auth.role() = 'authenticated');
-CREATE POLICY "courses_delete_auth" ON courses FOR DELETE USING (auth.role() = 'authenticated');
+CREATE POLICY "courses_insert_auth" ON courses FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+CREATE POLICY "courses_update_auth" ON courses FOR UPDATE USING (auth.uid() IS NOT NULL);
+CREATE POLICY "courses_delete_auth" ON courses FOR DELETE USING (auth.uid() IS NOT NULL);
 
 -- Orders policies: public insert, authenticated read/update
 CREATE POLICY "orders_insert_all" ON orders FOR INSERT WITH CHECK (true);
-CREATE POLICY "orders_select_auth" ON orders FOR SELECT USING (auth.role() = 'authenticated');
-CREATE POLICY "orders_update_auth" ON orders FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "orders_select_auth" ON orders FOR SELECT USING (auth.uid() IS NOT NULL);
+CREATE POLICY "orders_update_auth" ON orders FOR UPDATE USING (auth.uid() IS NOT NULL);
 
 -- Messages policies: public insert, authenticated read/update/delete
 CREATE POLICY "messages_insert_all" ON messages FOR INSERT WITH CHECK (true);
-CREATE POLICY "messages_select_auth" ON messages FOR SELECT USING (auth.role() = 'authenticated');
-CREATE POLICY "messages_update_auth" ON messages FOR UPDATE USING (auth.role() = 'authenticated');
-CREATE POLICY "messages_delete_auth" ON messages FOR DELETE USING (auth.role() = 'authenticated');
+CREATE POLICY "messages_select_auth" ON messages FOR SELECT USING (auth.uid() IS NOT NULL);
+CREATE POLICY "messages_update_auth" ON messages FOR UPDATE USING (auth.uid() IS NOT NULL);
+CREATE POLICY "messages_delete_auth" ON messages FOR DELETE USING (auth.uid() IS NOT NULL);
 
 -- Create indexes for performance
 CREATE INDEX IF NOT EXISTS idx_products_category ON products(category);
